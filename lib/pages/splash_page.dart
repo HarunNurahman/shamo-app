@@ -15,8 +15,8 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Timer(
-      Duration(seconds: 3),
-      () => Get.toNamed('/login'),
+      const Duration(seconds: 3),
+      () => Get.offAllNamed('/login'),
     );
     super.initState();
   }

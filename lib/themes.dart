@@ -15,6 +15,7 @@ Color bgColor3 = Color(0xFF242231);
 // Text Color
 Color primaryTextColor = Color(0xFFF1F0F2);
 Color secondaryTextColor = Color(0xFF999999);
+Color subtitleTextColor = Color(0xFF504F5E);
 
 // Text Style
 TextStyle primaryTextStyle = GoogleFonts.poppins(
@@ -29,9 +30,17 @@ TextStyle priceTextStyle = GoogleFonts.poppins(
   color: priceColor,
 );
 
+TextStyle subtitleTextStyle = GoogleFonts.poppins(color: subtitleTextColor);
+
 // Font Weight
 FontWeight light = FontWeight.w300;
 FontWeight regular = FontWeight.w400;
 FontWeight medium = FontWeight.w500;
 FontWeight semibold = FontWeight.w600;
 FontWeight bold = FontWeight.w700;
+
+// Default Margin
+double defaultMargin = 30.0;
+
+// Default Border Radius
+double defaultRadius = 12.0;

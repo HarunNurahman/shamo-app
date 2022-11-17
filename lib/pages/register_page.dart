@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/themes.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Sign In',
+              'Register',
               style: primaryTextStyle.copyWith(
                 fontSize: 24,
                 fontWeight: semibold,
@@ -23,7 +23,7 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 2),
             Text(
-              'Please Sign In to Continue',
+              'Register and Happy Shopping',
               style: subtitleTextStyle,
             )
           ],
@@ -32,6 +32,102 @@ class LoginPage extends StatelessWidget {
     }
 
     Widget textInput() {
+      // Full Name Text Field
+      Widget nameInput() {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Full Name',
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              height: 50,
+              margin: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: bgColor2,
+                borderRadius: BorderRadius.circular(defaultRadius),
+              ),
+              child: Center(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/ic_name.png',
+                      width: 17,
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: TextFormField(
+                        style: primaryTextStyle,
+                        autocorrect: false,
+                        enableSuggestions: false,
+                        decoration: InputDecoration.collapsed(
+                          hintText: 'Your Full Name',
+                          hintStyle: subtitleTextStyle,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      }
+
+      // Username Text Field
+      Widget usernameInput() {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Username',
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: medium,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              height: 50,
+              margin: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: bgColor2,
+                borderRadius: BorderRadius.circular(defaultRadius),
+              ),
+              child: Center(
+                child: Row(
+                  children: [
+                    Image.asset(
+                      'assets/icons/ic_username.png',
+                      width: 17,
+                    ),
+                    const SizedBox(width: 16),
+                    Expanded(
+                      child: TextFormField(
+                        style: primaryTextStyle,
+                        autocorrect: false,
+                        enableSuggestions: false,
+                        decoration: InputDecoration.collapsed(
+                          hintText: 'Your Username',
+                          hintStyle: subtitleTextStyle,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ],
+        );
+      }
+
       // Email Text Field Widget
       Widget emailInput() {
         return Column(
@@ -141,7 +237,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             child: Text(
-              'Sign In',
+              'Sign Up',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,
@@ -157,6 +253,8 @@ class LoginPage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              nameInput(),
+              usernameInput(),
               emailInput(),
               passwordInput(),
               submitButton(),
@@ -172,13 +270,13 @@ class LoginPage extends StatelessWidget {
         child: Center(
           child: RichText(
             text: TextSpan(
-              text: 'Don\'t have an account?',
+              text: 'Already have an account?',
               style: subtitleTextStyle.copyWith(fontSize: 12),
               children: [
                 TextSpan(
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () => Get.toNamed('/register'),
-                  text: ' Sign Up',
+                    ..onTap = () => Get.toNamed('/login'),
+                  text: ' Sign In',
                   style: subtitleTextStyle.copyWith(
                     fontSize: 12,
                     color: primaryColor,
