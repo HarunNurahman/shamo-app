@@ -11,6 +11,7 @@ Color priceColor = Color(0xFF2C96F1);
 Color bgColor1 = Color(0xFF1F1D2B);
 Color bgColor2 = Color(0xFF2B2937);
 Color bgColor3 = Color(0xFF242231);
+Color bgColor4 = Color(0xFF252836);
 
 // Text Color
 Color primaryTextColor = Color(0xFFF1F0F2);
