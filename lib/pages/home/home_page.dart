@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamo/pages/widgets/category_widget.dart';
+import 'package:shamo/pages/widgets/product_card.dart';
 import 'package:shamo/themes.dart';
 
 class HomePage extends StatelessWidget {
@@ -36,6 +37,7 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    // Category Widget
     Widget categories() {
       return Padding(
         padding: EdgeInsets.only(top: defaultMargin),
@@ -84,6 +86,37 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    // Popular Products Widget
+    Widget popularProducts() {
+      return Padding(
+        padding: EdgeInsets.only(top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Title
+            Text(
+              'Popular Products',
+              style: primaryTextStyle.copyWith(
+                fontSize: 22,
+                fontWeight: semibold,
+              ),
+            ),
+            const SizedBox(height: 14),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  ProductCard(),
+                  ProductCard(),
+                  ProductCard(),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: bgColor1,
       body: SafeArea(
@@ -95,6 +128,7 @@ class HomePage extends StatelessWidget {
               children: [
                 header(),
                 categories(),
+                popularProducts(),
               ],
             ),
           ),

@@ -74,8 +74,8 @@ class _DashboardPageState extends State<DashboardPage> {
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(
-                      top: 20,
-                      right: 30,
+                      top: 10,
+                      right: 60,
                     ),
                     child: Image.asset(
                       'assets/icons/ic_chat.png',
@@ -91,9 +91,9 @@ class _DashboardPageState extends State<DashboardPage> {
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(
-                      top: 20,
+                      top: 10,
                       bottom: 10,
-                      left: 30,
+                      left: 60,
                     ),
                     child: Image.asset(
                       'assets/icons/ic_wishlist.png',
@@ -108,7 +108,7 @@ class _DashboardPageState extends State<DashboardPage> {
                 // Profile Button
                 BottomNavigationBarItem(
                   icon: Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 10),
+                    padding: const EdgeInsets.only(top: 10, bottom: 10),
                     child: Image.asset(
                       'assets/icons/ic_profile.png',
                       width: 18,

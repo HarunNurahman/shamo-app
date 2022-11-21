@@ -8,6 +8,7 @@ Color alertColor = Color(0xFFED6363);
 Color priceColor = Color(0xFF2C96F1);
 Color transparentColor = Colors.transparent;
 Color borderColor = Color(0xFF302F37);
+Color blackColor = Color(0xFF2E2E2E);
 
 // Background Color
 Color bgColor1 = Color(0xFF1F1D2B);
@@ -34,6 +35,7 @@ TextStyle priceTextStyle = GoogleFonts.poppins(
 );
 
 TextStyle subtitleTextStyle = GoogleFonts.poppins(color: subtitleTextColor);
+TextStyle blackTextStyle = GoogleFonts.poppins(color: blackColor);
 
 // Font Weight
 FontWeight light = FontWeight.w300;
