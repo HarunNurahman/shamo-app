@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo/pages/widgets/category_widget.dart';
 import 'package:shamo/themes.dart';
 
 class HomePage extends StatelessWidget {
@@ -6,6 +7,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Header Widget (Profile name and username and profile picture)
     Widget header() {
       return Row(
         children: [
@@ -34,6 +36,54 @@ class HomePage extends StatelessWidget {
       );
     }
 
+    Widget categories() {
+      return Padding(
+        padding: EdgeInsets.only(top: defaultMargin),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              // Active Category
+              CategoryWidget(
+                category: 'All Shoes',
+                background: primaryColor,
+                textStyle: primaryTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: medium,
+                ),
+                border: transparentColor,
+              ),
+              // Inactive Category
+              CategoryWidget(
+                category: 'Running',
+                textStyle: subtitleTextStyle.copyWith(fontSize: 12),
+                background: transparentColor,
+                border: borderColor,
+              ),
+              CategoryWidget(
+                category: 'Training',
+                textStyle: subtitleTextStyle.copyWith(fontSize: 12),
+                background: transparentColor,
+                border: borderColor,
+              ),
+              CategoryWidget(
+                category: 'Basketball',
+                textStyle: subtitleTextStyle.copyWith(fontSize: 12),
+                background: transparentColor,
+                border: borderColor,
+              ),
+              CategoryWidget(
+                category: 'Hiking',
+                textStyle: subtitleTextStyle.copyWith(fontSize: 12),
+                background: transparentColor,
+                border: borderColor,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: bgColor1,
       body: SafeArea(
@@ -44,6 +94,7 @@ class HomePage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 header(),
+                categories(),
               ],
             ),
           ),

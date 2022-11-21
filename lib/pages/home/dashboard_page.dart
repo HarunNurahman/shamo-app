@@ -17,6 +17,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    // Middle Float Button for Cart Widget
     Widget cartButton() {
       return FloatingActionButton(
         onPressed: () {},
@@ -30,14 +31,16 @@ class _DashboardPageState extends State<DashboardPage> {
 
     Widget customBottomNav() {
       return ClipRRect(
+        // Styling Edge of Bottom Navigation Bar
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(30),
         ),
         child: Theme(
+          // Disabling Ripple Effect
           data: Theme.of(context).copyWith(
-            splashColor: Colors.transparent,
-            hoverColor: Colors.transparent,
-            highlightColor: Colors.transparent,
+            splashColor: transparentColor,
+            hoverColor: transparentColor,
+            highlightColor: transparentColor,
           ),
           child: BottomAppBar(
             shape: const CircularNotchedRectangle(),
@@ -53,6 +56,7 @@ class _DashboardPageState extends State<DashboardPage> {
               backgroundColor: bgColor4,
               type: BottomNavigationBarType.fixed,
               items: [
+                // Home Button
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
@@ -66,6 +70,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   label: '',
                 ),
+                // Message Button
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(
@@ -82,6 +87,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   label: '',
                 ),
+                // Wishlist Button
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(
@@ -99,6 +105,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   ),
                   label: '',
                 ),
+                // Profile Button
                 BottomNavigationBarItem(
                   icon: Padding(
                     padding: const EdgeInsets.only(top: 20, bottom: 10),
@@ -119,6 +126,7 @@ class _DashboardPageState extends State<DashboardPage> {
       );
     }
 
+    // State for Bottom Navigation Bar
     Widget body() {
       switch (currentIndex) {
         case 0:

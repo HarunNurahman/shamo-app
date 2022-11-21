@@ -6,6 +6,8 @@ Color primaryColor = Color(0xFF6C5ECF);
 Color secondaryColor = Color(0xFF38ABBE);
 Color alertColor = Color(0xFFED6363);
 Color priceColor = Color(0xFF2C96F1);
+Color transparentColor = Colors.transparent;
+Color borderColor = Color(0xFF302F37);
 
 // Background Color
 Color bgColor1 = Color(0xFF1F1D2B);
