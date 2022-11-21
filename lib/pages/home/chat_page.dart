@@ -7,6 +7,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor1,
       body: Center(
         child: Text(
           'Chat Page',
