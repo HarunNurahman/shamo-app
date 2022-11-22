@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:shamo/themes.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({super.key});
+  const ProductTile({
+    super.key,
+    required this.imgUrl,
+    required this.category,
+    required this.productName,
+    required this.price,
+  });
+
+  final String imgUrl;
+  final String category;
+  final String productName;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +24,7 @@ class ProductTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: Image.asset(
-              'assets/images/img_shoes-4.png',
+              imgUrl,
               width: 120,
               height: 120,
               fit: BoxFit.cover,
@@ -25,14 +36,14 @@ class ProductTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Football',
+                  category,
                   style: secondaryTextStyle.copyWith(
                     fontSize: 12,
                   ),
                 ),
                 SizedBox(height: defaultRadius - 6), // 12 - 6
                 Text(
-                  'Predator 20.3 Firm Ground',
+                  productName,
                   style: primaryTextStyle.copyWith(
                     fontSize: 16,
                     fontWeight: semibold,
@@ -42,7 +53,7 @@ class ProductTile extends StatelessWidget {
                 ),
                 SizedBox(height: defaultRadius - 6), // 12 - 6
                 Text(
-                  '\$68.47',
+                  price,
                   style: priceTextStyle.copyWith(
                     fontWeight: medium,
                   ),
