@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shamo/pages/widgets/category_widget.dart';
 import 'package:shamo/pages/widgets/product_card.dart';
+import 'package:shamo/pages/widgets/product_tile.dart';
 import 'package:shamo/themes.dart';
 
 class HomePage extends StatelessWidget {
@@ -105,13 +106,53 @@ class HomePage extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: [
-                  ProductCard(),
-                  ProductCard(),
-                  ProductCard(),
+                children: const [
+                  ProductCard(
+                    imgUrl: 'assets/images/img_shoes-1.png',
+                    category: 'Hiking',
+                    productName: 'Court Vision 2.0',
+                    price: '\$58.67',
+                  ),
+                  ProductCard(
+                    imgUrl: 'assets/images/img_shoes-2.png',
+                    category: 'Hiking',
+                    productName: 'Terrex Urban Low',
+                    price: '\$143.98',
+                  ),
+                  ProductCard(
+                    imgUrl: 'assets/images/img_shoes-3.png',
+                    category: 'Running',
+                    productName: 'SL20 Shoes',
+                    price: '\$123.82',
+                  ),
                 ],
               ),
             ),
+          ],
+        ),
+      );
+    }
+
+    // New Arrival Products
+    Widget newArrivals() {
+      return Padding(
+        padding: EdgeInsets.only(top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'New Arrivals',
+              style: primaryTextStyle.copyWith(
+                fontSize: 22,
+                fontWeight: semibold,
+              ),
+            ),
+            const SizedBox(height: 14),
+            Column(
+              children: [
+                ProductTile(),
+              ],
+            )
           ],
         ),
       );
@@ -129,6 +170,7 @@ class HomePage extends StatelessWidget {
                 header(),
                 categories(),
                 popularProducts(),
+                newArrivals(),
               ],
             ),
           ),

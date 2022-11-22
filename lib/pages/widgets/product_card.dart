@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:shamo/themes.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({
+    super.key,
+    required this.imgUrl,
+    required this.category,
+    required this.productName,
+    required this.price,
+  });
+
+  final String imgUrl;
+  final String category;
+  final String productName;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +29,9 @@ class ProductCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(height: defaultMargin),
+          // Product Image
           Image.asset(
-            'assets/images/img_shoes-1.png',
+            imgUrl,
             width: 215,
             height: 150,
             fit: BoxFit.cover,
@@ -31,7 +43,7 @@ class ProductCard extends StatelessWidget {
               children: [
                 // Shoes Category
                 Text(
-                  'Hiking',
+                  category,
                   style: secondaryTextStyle.copyWith(
                     fontSize: 12,
                   ),
@@ -39,7 +51,7 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 // Shoes Brand
                 Text(
-                  'Court Vision 2.0'.toUpperCase(),
+                  productName.toUpperCase(),
                   style: blackTextStyle.copyWith(
                     fontSize: 18,
                     fontWeight: semibold,
@@ -49,8 +61,8 @@ class ProductCard extends StatelessWidget {
                 const SizedBox(height: 6),
                 // Price
                 Text(
-                  '\$58.67',
-                  style: priceTextStyle.copyWith(fontWeight: medium),
+                  price,
+                  style: priceTextStyle.copyWith(fontWeight: semibold),
                 )
               ],
             ),
