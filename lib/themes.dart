@@ -2,24 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Theme Color
-Color primaryColor = Color(0xFF6C5ECF);
-Color secondaryColor = Color(0xFF38ABBE);
-Color alertColor = Color(0xFFED6363);
-Color priceColor = Color(0xFF2C96F1);
+Color primaryColor = const Color(0xFF6C5ECF);
+Color secondaryColor = const Color(0xFF38ABBE);
+Color alertColor = const Color(0xFFED6363);
+Color priceColor = const Color(0xFF2C96F1);
 Color transparentColor = Colors.transparent;
-Color borderColor = Color(0xFF302F37);
-Color blackColor = Color(0xFF2E2E2E);
+Color borderColor = const Color(0xFF302F37);
+Color blackColor = const Color(0xFF2E2E2E);
 
 // Background Color
-Color bgColor1 = Color(0xFF1F1D2B);
-Color bgColor2 = Color(0xFF2B2937);
-Color bgColor3 = Color(0xFF242231);
-Color bgColor4 = Color(0xFF252836);
+Color bgColor1 = const Color(0xFF1F1D2B);
+Color bgColor2 = const Color(0xFF2B2937);
+Color bgColor3 = const Color(0xFF242231);
+Color bgColor4 = const Color(0xFF252836);
+Color bgColor5 = const Color(0xFF2B2844);
 
 // Text Color
-Color primaryTextColor = Color(0xFFF1F0F2);
-Color secondaryTextColor = Color(0xFF999999);
-Color subtitleTextColor = Color(0xFF504F5E);
+Color primaryTextColor = const Color(0xFFF1F0F2);
+Color secondaryTextColor = const Color(0xFF999999);
+Color subtitleTextColor = const Color(0xFF504F5E);
 
 // Text Style
 TextStyle primaryTextStyle = GoogleFonts.poppins(
