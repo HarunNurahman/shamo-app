@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shamo/pages/widgets/chat-bubble_widget.dart';
 import 'package:shamo/themes.dart';
 
 class DetailChatPage extends StatelessWidget {
@@ -48,6 +49,7 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    //
     Widget productPreview() {
       return Container(
         width: 225,
@@ -78,7 +80,7 @@ class DetailChatPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Court Vision 2.0'.toUpperCase(),
+                    'Court Vision 2.0 Shoes'.toUpperCase(),
                     style: primaryTextStyle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
@@ -151,15 +153,28 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
+    //
+    Widget chatContent() {
+      return ListView(
+        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+        children: const [
+          ChatBubble(
+            isSender: true,
+            text: 'Hi, this item still available?',
+            hasProduct: true,
+          ),
+          ChatBubble(
+            isSender: false,
+            text: 'Good evening, This item only available in size 42 and 43',
+          ),
+        ],
+      );
+    }
+
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: header(),
-      body: Center(
-        child: Text(
-          'Chatting',
-          style: primaryTextStyle,
-        ),
-      ),
+      body: chatContent(),
       bottomNavigationBar: chatInput(),
     );
   }
