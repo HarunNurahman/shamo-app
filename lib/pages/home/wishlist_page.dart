@@ -86,8 +86,16 @@ class WishlistPage extends StatelessWidget {
           color: bgColor3,
           child: ListView(
             children: const [
-              WishlistCard(),
-              WishlistCard(),
+              WishlistCard(
+                imgUrl: 'assets/images/img_shoes-6.png',
+                productName: 'Terrex Urban Low',
+                price: '143.98',
+              ),
+              WishlistCard(
+                imgUrl: 'assets/images/img_shoes-7.png',
+                productName: 'Predator 20.3 Firm Ground Boots',
+                price: '68.47',
+              ),
             ],
           ),
         ),

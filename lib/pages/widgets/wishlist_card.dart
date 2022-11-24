@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:shamo/themes.dart';
 
 class WishlistCard extends StatelessWidget {
-  const WishlistCard({super.key});
+  const WishlistCard({
+    super.key,
+    required this.imgUrl,
+    required this.productName,
+    required this.price,
+  });
+
+  final String imgUrl;
+  final String productName;
+  final String price;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +32,7 @@ class WishlistCard extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(defaultRadius),
             child: Image.asset(
-              'assets/images/img_shoes-6.png',
+              imgUrl,
               width: 60,
               fit: BoxFit.cover,
             ),
@@ -34,15 +43,15 @@ class WishlistCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Terrex Urban Low',
+                  productName,
                   style: primaryTextStyle.copyWith(
                     fontWeight: semibold,
                   ),
-                  maxLines: 1,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 2),
-                Text('\$143.98', style: priceTextStyle),
+                Text('\$$price', style: priceTextStyle),
               ],
             ),
           ),
