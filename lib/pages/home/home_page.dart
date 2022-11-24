@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          Image.asset('assets/images/img_profile.png', width: 56),
+          Image.asset('assets/icons/ic_profile_pic.png', width: 56),
         ],
       );
     }
