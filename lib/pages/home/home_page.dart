@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Title
                 Text(
                   'Hello, Harun',
                   style: primaryTextStyle.copyWith(
@@ -26,6 +27,7 @@ class HomePage extends StatelessWidget {
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+                // Username
                 Text(
                   '@Harunamanya',
                   style: subtitleTextStyle.copyWith(fontSize: 16),
@@ -33,6 +35,7 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
+          // Profile Picture
           Image.asset('assets/icons/ic_profile_pic.png', width: 56),
         ],
       );
@@ -57,24 +60,28 @@ class HomePage extends StatelessWidget {
                 border: transparentColor,
               ),
               // Inactive Category
+              /// Running
               CategoryWidget(
                 category: 'Running',
                 textStyle: subtitleTextStyle.copyWith(fontSize: 12),
                 background: transparentColor,
                 border: borderColor,
               ),
+              // Training
               CategoryWidget(
                 category: 'Training',
                 textStyle: subtitleTextStyle.copyWith(fontSize: 12),
                 background: transparentColor,
                 border: borderColor,
               ),
+              // Basketball
               CategoryWidget(
                 category: 'Basketball',
                 textStyle: subtitleTextStyle.copyWith(fontSize: 12),
                 background: transparentColor,
                 border: borderColor,
               ),
+              // Hiking
               CategoryWidget(
                 category: 'Hiking',
                 textStyle: subtitleTextStyle.copyWith(fontSize: 12),
@@ -103,6 +110,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 14),
+            // Product List
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -148,6 +156,7 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 14),
+            // Product List
             Column(
               children: const [
                 ProductTile(

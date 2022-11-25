@@ -85,6 +85,7 @@ class WishlistPage extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: defaultMargin),
           color: bgColor3,
           child: ListView(
+            // Product List
             children: const [
               WishlistCard(
                 imgUrl: 'assets/images/img_shoes-6.png',

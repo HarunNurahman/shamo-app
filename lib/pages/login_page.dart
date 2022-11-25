@@ -8,12 +8,15 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    // Header Widget
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: defaultMargin),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Title
             Text(
               'Sign In',
               style: primaryTextStyle.copyWith(
@@ -22,6 +25,7 @@ class LoginPage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 2),
+            // Subtitle
             Text(
               'Please Sign In to Continue',
               style: subtitleTextStyle,
@@ -31,12 +35,14 @@ class LoginPage extends StatelessWidget {
       );
     }
 
+    // List of Text Field
     Widget textInput() {
       // Email Text Field Widget
       Widget emailInput() {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Title
             Text(
               'Email Address',
               style: primaryTextStyle.copyWith(
@@ -56,11 +62,13 @@ class LoginPage extends StatelessWidget {
               child: Center(
                 child: Row(
                   children: [
+                    // Prefix Icon
                     Image.asset(
                       'assets/icons/ic_email.png',
                       width: 17,
                     ),
                     const SizedBox(width: 16),
+                    // Text Field
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
@@ -85,6 +93,7 @@ class LoginPage extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Title
             Text(
               'Password',
               style: primaryTextStyle.copyWith(
@@ -104,11 +113,13 @@ class LoginPage extends StatelessWidget {
               child: Center(
                 child: Row(
                   children: [
+                    // Prefix Icon
                     Image.asset(
                       'assets/icons/ic_password.png',
                       width: 17,
                     ),
                     const SizedBox(width: 16),
+                    // Text Field
                     Expanded(
                       child: TextFormField(
                         style: primaryTextStyle,
@@ -168,6 +179,7 @@ class LoginPage extends StatelessWidget {
       );
     }
 
+    // Register Button
     Widget footer() {
       return Padding(
         padding: EdgeInsets.only(bottom: defaultMargin),

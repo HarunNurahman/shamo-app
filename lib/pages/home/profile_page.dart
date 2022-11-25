@@ -5,7 +5,7 @@ import 'package:shamo/themes.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
-  // Header App
+  // Header App (Profile Picture, Name, Username, Logout Button)
   Widget header() {
     return AppBar(
       backgroundColor: bgColor1,
@@ -16,6 +16,7 @@ class ProfilePage extends StatelessWidget {
           padding: EdgeInsets.all(defaultMargin),
           child: Row(
             children: [
+              // Profile Picture
               ClipOval(
                 child: Image.asset(
                   'assets/icons/ic_profile_pic.png',
@@ -23,6 +24,7 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 16),
+              // Name and Username
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -41,6 +43,7 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
+              // Logout Button
               GestureDetector(
                 onTap: () => Get.offAllNamed('/login'),
                 child: Image.asset('assets/icons/ic_logout.png', width: 20),
@@ -54,6 +57,7 @@ class ProfilePage extends StatelessWidget {
 
   // Profile Content
   Widget profileContent() {
+    // Menu Item Button
     Widget menuItem(String text) {
       return Container(
         margin: const EdgeInsets.only(top: 16),
@@ -79,6 +83,7 @@ class ProfilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 20),
+            // Title
             Text(
               'Account',
               style: primaryTextStyle.copyWith(
@@ -86,6 +91,7 @@ class ProfilePage extends StatelessWidget {
                 fontWeight: semibold,
               ),
             ),
+            // Menu Item Button
             GestureDetector(
               child: menuItem('Edit Profile'),
               onTap: () => Get.toNamed('/edit-profile'),

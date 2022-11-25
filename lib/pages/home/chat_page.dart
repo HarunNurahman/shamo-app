@@ -78,7 +78,7 @@ class ChatPage extends StatelessWidget {
     );
   }
 
-  //
+  // Chat List
   Widget listChat() {
     return Expanded(
       child: Container(
