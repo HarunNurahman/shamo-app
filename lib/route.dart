@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
+import 'package:shamo/pages/edit-profile_page.dart';
 import 'package:shamo/pages/home/dashboard_page.dart';
-import 'package:shamo/pages/home/detail-chat_page.dart';
+import 'package:shamo/pages/detail-chat_page.dart';
 import 'package:shamo/pages/login_page.dart';
 import 'package:shamo/pages/register_page.dart';
 import 'package:shamo/pages/splash_page.dart';
@@ -26,6 +27,10 @@ class PageRoutes {
     GetPage(
       name: '/message',
       page: () => const DetailChatPage(),
-    )
+    ),
+    GetPage(
+      name: '/edit-profile',
+      page: () => const EditProfilePage(),
+    ),
   ];
 }

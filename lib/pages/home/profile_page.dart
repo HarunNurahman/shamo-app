@@ -41,7 +41,10 @@ class ProfilePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Image.asset('assets/icons/ic_logout.png', width: 20),
+              GestureDetector(
+                onTap: () => Get.offAllNamed('/login'),
+                child: Image.asset('assets/icons/ic_logout.png', width: 20),
+              ),
             ],
           ),
         ),
@@ -52,20 +55,17 @@ class ProfilePage extends StatelessWidget {
   // Profile Content
   Widget profileContent() {
     Widget menuItem(String text) {
-      return GestureDetector(
-        onTap: () {},
-        child: Container(
-          margin: const EdgeInsets.only(top: 16),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(text, style: secondaryTextStyle),
-              Icon(
-                Icons.keyboard_arrow_right_rounded,
-                color: secondaryTextColor,
-              )
-            ],
-          ),
+      return Container(
+        margin: const EdgeInsets.only(top: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(text, style: secondaryTextStyle),
+            Icon(
+              Icons.keyboard_arrow_right_rounded,
+              color: secondaryTextColor,
+            )
+          ],
         ),
       );
     }
@@ -86,7 +86,10 @@ class ProfilePage extends StatelessWidget {
                 fontWeight: semibold,
               ),
             ),
-            menuItem('Edit Profile'),
+            GestureDetector(
+              child: menuItem('Edit Profile'),
+              onTap: () => Get.toNamed('/edit-profile'),
+            ),
             menuItem('Your Orders'),
             menuItem('Help'),
             SizedBox(height: defaultMargin),
