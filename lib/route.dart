@@ -3,6 +3,7 @@ import 'package:shamo/pages/edit-profile_page.dart';
 import 'package:shamo/pages/home/dashboard_page.dart';
 import 'package:shamo/pages/detail-chat_page.dart';
 import 'package:shamo/pages/login_page.dart';
+import 'package:shamo/pages/product_page.dart';
 import 'package:shamo/pages/register_page.dart';
 import 'package:shamo/pages/splash_page.dart';
 
@@ -38,5 +39,9 @@ class PageRoutes {
       name: '/edit-profile',
       page: () => const EditProfilePage(),
     ),
+    GetPage(
+      name: '/product',
+      page: () => ProductPage(),
+    )
   ];
 }

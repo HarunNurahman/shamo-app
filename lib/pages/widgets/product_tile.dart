@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shamo/themes.dart';
 
 class ProductTile extends StatelessWidget {
@@ -17,51 +18,54 @@ class ProductTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: defaultMargin),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              imgUrl,
-              width: 120,
-              height: 120,
-              fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => Get.toNamed('/product'),
+      child: Padding(
+        padding: EdgeInsets.only(bottom: defaultMargin),
+        child: Row(
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Image.asset(
+                imgUrl,
+                width: 120,
+                height: 120,
+                fit: BoxFit.cover,
+              ),
             ),
-          ),
-          SizedBox(width: defaultRadius),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  category,
-                  style: secondaryTextStyle.copyWith(
-                    fontSize: 12,
+            SizedBox(width: defaultRadius),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    category,
+                    style: secondaryTextStyle.copyWith(
+                      fontSize: 12,
+                    ),
                   ),
-                ),
-                SizedBox(height: defaultRadius - 6), // 12 - 6
-                Text(
-                  productName,
-                  style: primaryTextStyle.copyWith(
-                    fontSize: 16,
-                    fontWeight: semibold,
-                    overflow: TextOverflow.ellipsis,
+                  SizedBox(height: defaultRadius - 6), // 12 - 6
+                  Text(
+                    productName,
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semibold,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    maxLines: 2,
                   ),
-                  maxLines: 2,
-                ),
-                SizedBox(height: defaultRadius - 6), // 12 - 6
-                Text(
-                  price,
-                  style: priceTextStyle.copyWith(
-                    fontWeight: medium,
+                  SizedBox(height: defaultRadius - 6), // 12 - 6
+                  Text(
+                    price,
+                    style: priceTextStyle.copyWith(
+                      fontWeight: medium,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          )
-        ],
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

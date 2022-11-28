@@ -9,6 +9,7 @@ Color priceColor = const Color(0xFF2C96F1);
 Color transparentColor = Colors.transparent;
 Color borderColor = const Color(0xFF302F37);
 Color blackColor = const Color(0xFF2E2E2E);
+Color grayColor = const Color(0xFFC4C4C4);
 
 // Background Color
 Color bgColor1 = const Color(0xFF1F1D2B);
@@ -16,6 +17,7 @@ Color bgColor2 = const Color(0xFF2B2937);
 Color bgColor3 = const Color(0xFF242231);
 Color bgColor4 = const Color(0xFF252836);
 Color bgColor5 = const Color(0xFF2B2844);
+Color bgColor6 = const Color(0xFFECEDEF);
 
 // Text Color
 Color primaryTextColor = const Color(0xFFF1F0F2);
