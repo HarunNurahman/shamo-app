@@ -60,67 +60,63 @@ class _ProductPageState extends State<ProductPage> {
     // Header Widget (Header Button, Image Slider, Dot Indicator)
     Widget header() {
       int index = -1; // first index
-      return Stack(
+      return Column(
         children: [
-          Column(
-            children: [
-              Container(
-                margin: EdgeInsets.only(
-                  top: defaultMargin,
-                  left: defaultMargin,
-                  right: defaultMargin,
+          Container(
+            margin: EdgeInsets.only(
+              top: defaultMargin,
+              left: defaultMargin,
+              right: defaultMargin,
+            ),
+            // Header Button (Back and Cart)
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Icon(
+                    Icons.chevron_left_rounded,
+                    color: bgColor1,
+                  ),
                 ),
-                // Header Button (Back and Cart)
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                      onTap: () => Get.back(),
-                      child: Icon(
-                        Icons.chevron_left_rounded,
-                        color: bgColor1,
-                      ),
-                    ),
-                    Icon(
-                      Icons.shopping_bag_rounded,
-                      color: bgColor1,
-                    )
-                  ],
-                ),
-              ),
-              // Image Carousel
-              CarouselSlider(
-                items: productImage
-                    .map(
-                      (image) => Image.asset(
-                        image,
-                        width: MediaQuery.of(context).size.width,
-                        height: 310,
-                        fit: BoxFit.cover,
-                      ),
-                    )
-                    .toList(),
-                options: CarouselOptions(
-                  viewportFraction: 1,
-                  initialPage: 0,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      currentIndex = index;
-                    });
-                  },
-                ),
-              ),
-              SizedBox(height: defaultMargin),
-              // Dot Indicator Slider
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: productImage.map((e) {
-                  index++;
-                  return sliderIndicator(index);
-                }).toList(),
-              )
-            ],
+                Icon(
+                  Icons.shopping_bag_rounded,
+                  color: bgColor1,
+                )
+              ],
+            ),
           ),
+          // Image Carousel
+          CarouselSlider(
+            items: productImage
+                .map(
+                  (image) => Image.asset(
+                    image,
+                    width: MediaQuery.of(context).size.width,
+                    height: 310,
+                    fit: BoxFit.cover,
+                  ),
+                )
+                .toList(),
+            options: CarouselOptions(
+              viewportFraction: 1,
+              initialPage: 0,
+              onPageChanged: (index, reason) {
+                setState(() {
+                  currentIndex = index;
+                });
+              },
+            ),
+          ),
+          SizedBox(height: defaultMargin),
+          // Dot Indicator Slider
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: productImage.map((e) {
+              index++;
+              return sliderIndicator(index);
+            }).toList(),
+          )
         ],
       );
     }
@@ -129,190 +125,187 @@ class _ProductPageState extends State<ProductPage> {
     Widget content() {
       int index = -1;
 
-      return SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.only(top: 16),
-          padding: EdgeInsets.all(defaultMargin),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: bgColor1,
-            borderRadius: BorderRadius.vertical(
-              top: Radius.circular(defaultRadius * 2), // 12 * 2
-            ),
+      return Container(
+        margin: EdgeInsets.only(top: defaultMargin),
+        padding: EdgeInsets.all(defaultMargin),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: bgColor1,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(defaultRadius * 2), // 12 * 2
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Text Header (Product Name, Category, Wishlist Button)
-              Row(
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Text Header (Product Name, Category, Wishlist Button)
+            Row(
+              children: [
+                // Product Information, Category Product
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Terrex Urban Low'.toUpperCase(),
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 18,
+                          fontWeight: semibold,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      Text(
+                        'Hiking',
+                        style: secondaryTextStyle.copyWith(fontSize: 12),
+                      )
+                    ],
+                  ),
+                ),
+                // Wishlist Button
+                Image.asset(
+                  'assets/icons/btn_wishlist-off.png',
+                  width: 46,
+                ),
+              ],
+            ),
+
+            // Product Price Box
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(top: 20, bottom: defaultMargin),
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: bgColor2,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  // Product Information, Category Product
+                  Text('Price starts from', style: primaryTextStyle),
+                  Text(
+                    '\$143.98',
+                    style: priceTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semibold,
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            // Description Section
+            Container(
+              margin: EdgeInsets.only(bottom: defaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Description',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    '''Unpaved trails and mixed surfaces are easy when you have the traction and support you need. Casual enough for the daily commute.''',
+                    textAlign: TextAlign.justify,
+                    style: subtitleTextStyle.copyWith(
+                      fontWeight: light,
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            // Similar Product
+            Container(
+              width: double.infinity,
+              margin: EdgeInsets.only(bottom: defaultMargin),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Similar Products',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
+                    ),
+                  ),
+                  SizedBox(height: defaultRadius),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: similarProduct.map((image) {
+                        index++;
+                        return Container(
+                          margin: EdgeInsets.only(
+                            left: index == 0 ? 0 : 0,
+                          ),
+                          child: similarProductCard(image),
+                        );
+                      }).toList(),
+                    ),
+                  )
+                ],
+              ),
+            ),
+
+            // Message and Add to Cart Button
+            // ignore: sized_box_for_whitespace
+            Container(
+              width: double.infinity,
+              child: Row(
+                children: [
+                  // Message Button
+                  Container(
+                    margin: EdgeInsets.only(right: defaultRadius),
+                    width: 54,
+                    height: 54,
+                    child: ElevatedButton(
+                      onPressed: () => Get.toNamed('/message'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: bgColor1,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(defaultRadius),
+                          side: BorderSide(
+                            color: primaryColor,
+                            width: 1,
+                          ),
+                        ),
+                      ),
+                      child: Image.asset(
+                        'assets/icons/ic_chat.png',
+                        color: primaryColor,
+                        width: 22,
+                      ),
+                    ),
+                  ),
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Terrex Urban Low'.toUpperCase(),
+                    child: SizedBox(
+                      height: 54,
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(defaultRadius),
+                          ),
+                        ),
+                        child: Text(
+                          'Add to Cart',
                           style: primaryTextStyle.copyWith(
                             fontSize: 18,
                             fontWeight: semibold,
                           ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
                         ),
-                        Text(
-                          'Hiking',
-                          style: secondaryTextStyle.copyWith(fontSize: 12),
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                  // Wishlist Button
-                  Image.asset(
-                    'assets/icons/btn_wishlist-off.png',
-                    width: 46,
-                  ),
+                  )
                 ],
               ),
-
-              // Product Price Box
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 20, bottom: defaultMargin),
-                padding: const EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: bgColor2,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Price starts from', style: primaryTextStyle),
-                    Text(
-                      '\$143.98',
-                      style: priceTextStyle.copyWith(
-                        fontSize: 16,
-                        fontWeight: semibold,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-
-              // Description Section
-              Container(
-                margin: EdgeInsets.only(bottom: defaultMargin),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Description',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      '''Unpaved trails and mixed surfaces are easy when you have the traction and support you need. Casual enough for the daily commute.''',
-                      textAlign: TextAlign.justify,
-                      style: subtitleTextStyle.copyWith(
-                        fontWeight: light,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-
-              // Similar Product
-              Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(bottom: defaultMargin),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Similar Products',
-                      style: primaryTextStyle.copyWith(
-                        fontWeight: medium,
-                      ),
-                    ),
-                    SizedBox(height: defaultRadius),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: similarProduct.map((image) {
-                          index++;
-                          return Container(
-                            margin: EdgeInsets.only(
-                              left: index == 0 ? 0 : 0,
-                            ),
-                            child: similarProductCard(image),
-                          );
-                        }).toList(),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-
-              // Message and Add to Cart Button
-              // ignore: sized_box_for_whitespace
-              Container(
-                width: double.infinity,
-                child: Row(
-                  children: [
-                    // Message Button
-                    Container(
-                      margin: EdgeInsets.only(right: defaultRadius),
-                      width: 54,
-                      height: 54,
-                      child: ElevatedButton(
-                        onPressed: () => Get.toNamed('/message'),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: bgColor1,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(defaultRadius),
-                            side: BorderSide(
-                              color: primaryColor,
-                              width: 1,
-                            ),
-                          ),
-                        ),
-                        child: Image.asset(
-                          'assets/icons/ic_chat.png',
-                          color: primaryColor,
-                          width: 22,
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: SizedBox(
-                        height: 54,
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: primaryColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(defaultRadius),
-                            ),
-                          ),
-                          child: Text(
-                            'Add to Cart',
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 18,
-                              fontWeight: semibold,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       );
     }
