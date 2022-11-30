@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shamo/pages/widgets/cart_card.dart';
 import 'package:shamo/themes.dart';
 
 class CartPage extends StatelessWidget {
@@ -81,14 +82,104 @@ class CartPage extends StatelessWidget {
       );
     }
 
+    // Cart Content
+    Widget contentCart() {
+      return Expanded(
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+          child: ListView(
+            children: const [
+              CartCard(
+                imgUrl: 'assets/images/img_shoes-1.png',
+                productName: 'Terrex Urban Low',
+                productPrice: '\$143.98',
+              ),
+              CartCard(
+                imgUrl: 'assets/images/img_shoes-3.png',
+                productName: 'Court Vision 2.0 Shoes Limited Edition',
+                productPrice: '\$57.15',
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    // Custom Bottom Navigation Bar
+    Widget customBottomNav() {
+      return Container(
+        height: 180,
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Subtotal', style: primaryTextStyle),
+                  Text(
+                    '\$287.96',
+                    style: priceTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semibold,
+                    ),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(height: defaultMargin),
+            Divider(
+              color: subtitleTextColor,
+              thickness: 1,
+            ),
+            SizedBox(height: defaultMargin),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 14,
+                  ),
+                  backgroundColor: primaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Continue to Checkout',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
+                    ),
+                    Icon(
+                      Icons.keyboard_arrow_right_rounded,
+                      color: primaryTextColor,
+                    )
+                  ],
+                ),
+              ),
+            )
+          ],
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: header(),
       body: Column(
         children: [
-          emptyCart(),
+          // emptyCart(),
+          contentCart(),
         ],
       ),
+      bottomNavigationBar: customBottomNav(),
     );
   }
 }
