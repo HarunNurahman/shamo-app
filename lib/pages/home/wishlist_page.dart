@@ -27,9 +27,7 @@ class WishlistPage extends StatelessWidget {
     // Body Widget (Empty Wishlist Status)
     Widget emptyWishlist() {
       return Expanded(
-        child: Container(
-          width: double.infinity,
-          color: bgColor3,
+        child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

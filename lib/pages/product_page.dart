@@ -86,7 +86,9 @@ class _ProductPageState extends State<ProductPage> {
                     const SizedBox(height: 20),
                     // Go to Cart Button
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed('/cart');
+                      },
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           vertical: defaultRadius,

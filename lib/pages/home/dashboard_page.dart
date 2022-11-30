@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shamo/pages/home/chat_page.dart';
 import 'package:shamo/pages/home/home_page.dart';
 import 'package:shamo/pages/home/profile_page.dart';
@@ -20,7 +21,9 @@ class _DashboardPageState extends State<DashboardPage> {
     // Middle Float Button for Cart Widget
     Widget cartButton() {
       return FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.toNamed('/cart');
+        },
         backgroundColor: secondaryColor,
         child: Image.asset(
           'assets/icons/ic_cart.png',

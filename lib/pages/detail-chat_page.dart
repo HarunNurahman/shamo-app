@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shamo/pages/widgets/chat-bubble_widget.dart';
 import 'package:shamo/themes.dart';
 
@@ -16,8 +17,12 @@ class DetailChatPage extends StatelessWidget {
           centerTitle: false,
           titleSpacing: 0.0,
           toolbarHeight: 70,
-          leading: Icon(
-            Icons.arrow_back_ios_new_rounded,
+          leading: IconButton(
+            onPressed: () => Get.back(),
+            icon: Icon(
+              Icons.arrow_back_ios_new_rounded,
+              color: primaryTextColor,
+            ),
             color: primaryTextColor,
           ),
           title: Row(
