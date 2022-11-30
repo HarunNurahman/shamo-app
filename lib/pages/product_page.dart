@@ -11,14 +11,19 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  // Current index for product image slider
   int currentIndex = 0;
+  // Default value for wishlist button
+  bool isWishlisted = false;
 
+  // List for detail product image
   final List productImage = [
     'assets/images/img_shoes-1.png',
     'assets/images/img_shoes-2.png',
     'assets/images/img_shoes-3.png',
   ];
 
+  // List for similar product
   final List similarProduct = [
     'assets/images/img_shoes-1.png',
     'assets/images/img_shoes-2.png',
@@ -31,6 +36,84 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> showSuccessDialog() async {
+      return showDialog(
+        context: context,
+        builder: (context) {
+          return Container(
+            width: MediaQuery.of(context).size.width - (2 * defaultMargin),
+            child: AlertDialog(
+              backgroundColor: bgColor3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(defaultMargin),
+              ),
+              content: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    // Close Dialog Button
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.close_rounded,
+                          color: primaryTextColor,
+                        ),
+                      ),
+                    ),
+                    // Success Icon
+                    Image.asset(
+                      'assets/icons/ic_success.png',
+                      width: 100,
+                    ),
+                    const SizedBox(height: 12),
+                    // Title
+                    Text(
+                      'Hurray :)',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 18,
+                        fontWeight: semibold,
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    // Subtitle
+                    Text(
+                      'Item added successfully',
+                      style: secondaryTextStyle,
+                    ),
+                    const SizedBox(height: 20),
+                    // Go to Cart Button
+                    ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(
+                          vertical: defaultRadius,
+                          horizontal: 24,
+                        ),
+                        backgroundColor: primaryColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(defaultRadius),
+                        ),
+                      ),
+                      child: Text(
+                        'View My Cart',
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 16,
+                          fontWeight: medium,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+      );
+    }
+
     // Dot Indicator For Product Images
     Widget sliderIndicator(int index) {
       return Container(
@@ -163,9 +246,41 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                 ),
                 // Wishlist Button
-                Image.asset(
-                  'assets/icons/btn_wishlist-off.png',
-                  width: 46,
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      isWishlisted = !isWishlisted;
+                    });
+                    if (isWishlisted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: secondaryColor,
+                          content: Text(
+                            'Item has been added to wishlist',
+                            style: primaryTextStyle.copyWith(fontSize: 12),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: alertColor,
+                          content: Text(
+                            'Item has been removed to wishlist',
+                            style: primaryTextStyle.copyWith(fontSize: 12),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: Image.asset(
+                    isWishlisted
+                        ? 'assets/icons/btn_wishlist-on.png'
+                        : 'assets/icons/btn_wishlist-off.png',
+                    width: 46,
+                  ),
                 ),
               ],
             ),
@@ -285,7 +400,9 @@ class _ProductPageState extends State<ProductPage> {
                       height: 54,
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          showSuccessDialog();
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: primaryColor,
                           shape: RoundedRectangleBorder(
@@ -295,7 +412,7 @@ class _ProductPageState extends State<ProductPage> {
                         child: Text(
                           'Add to Cart',
                           style: primaryTextStyle.copyWith(
-                            fontSize: 18,
+                            fontSize: 16,
                             fontWeight: semibold,
                           ),
                         ),
