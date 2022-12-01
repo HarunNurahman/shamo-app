@@ -81,63 +81,64 @@ class CheckoutPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: defaultRadius),
-                // Row(
-                //   children: [
-                //     Column(
-                //       children: [
-                //         Image.asset(
-                //           'assets/icons/ic_shipping-origin.png',
-                //           width: 40,
-                //         ),
-                //         Image.asset(
-                //           'assets/icons/ic_line.png',
-                //           height: 30,
-                //         ),
-                //         Image.asset(
-                //           'assets/icons/ic_shipping-destination.png',
-                //           width: 40,
-                //         ),
-                //       ],
-                //     ),
-                //     SizedBox(width: defaultRadius),
-                //     // Shipping Information
-                //     Expanded(
-                //       child: Column(
-                //         crossAxisAlignment: CrossAxisAlignment.start,
-                //         children: [
-                //           Text(
-                //             'Store Location',
-                //             style: secondaryTextStyle.copyWith(
-                //               fontSize: 12,
-                //               fontWeight: light,
-                //             ),
-                //           ),
-                //           Text(
-                //             'Adidas Core',
-                //             style: primaryTextStyle.copyWith(
-                //               fontWeight: medium,
-                //             ),
-                //           ),
-                //           SizedBox(height: defaultMargin),
-                //           Text(
-                //             'Your Address',
-                //             style: secondaryTextStyle.copyWith(
-                //               fontSize: 12,
-                //               fontWeight: light,
-                //             ),
-                //           ),
-                //           Text(
-                //             'Home',
-                //             style:
-                //                 primaryTextStyle.copyWith(fontWeight: medium),
-                //             maxLines: 2,
-                //             overflow: TextOverflow.ellipsis,
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ],
-                // ),
+                // Shipping Origin
+                Row(
+                  children: [
+                    Column(
+                      children: [
+                        Image.asset(
+                          'assets/icons/ic_shipping-origin.png',
+                          width: 40,
+                        ),
+                        Image.asset(
+                          'assets/icons/ic_line.png',
+                          height: 30,
+                        ),
+                        Image.asset(
+                          'assets/icons/ic_shipping-destination.png',
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: defaultRadius),
+                    // Shipping Information
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Store Location',
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: light,
+                            ),
+                          ),
+                          Text(
+                            'Adidas Core',
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: medium,
+                            ),
+                          ),
+                          SizedBox(height: defaultMargin),
+                          Text(
+                            'Your Address',
+                            style: secondaryTextStyle.copyWith(
+                              fontSize: 12,
+                              fontWeight: light,
+                            ),
+                          ),
+                          Text(
+                            'Home',
+                            style:
+                                primaryTextStyle.copyWith(fontWeight: medium),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
