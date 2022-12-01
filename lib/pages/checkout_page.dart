@@ -62,7 +62,7 @@ class CheckoutPage extends StatelessWidget {
             ],
           ),
 
-          // Shipment Address
+          // Shipment Information
           Container(
             margin: EdgeInsets.only(top: defaultMargin),
             padding: const EdgeInsets.all(20),
