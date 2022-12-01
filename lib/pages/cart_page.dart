@@ -136,7 +136,9 @@ class CartPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: defaultMargin),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed('/checkout');
+                },
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 20,

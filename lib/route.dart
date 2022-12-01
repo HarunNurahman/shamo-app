@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:shamo/pages/cart_page.dart';
+import 'package:shamo/pages/checkout_page.dart';
 import 'package:shamo/pages/edit-profile_page.dart';
 import 'package:shamo/pages/home/dashboard_page.dart';
 import 'package:shamo/pages/detail-chat_page.dart';
@@ -26,5 +27,7 @@ class PageRoutes {
     GetPage(name: '/product', page: () => const ProductPage()),
     // Cart Page Route
     GetPage(name: '/cart', page: () => const CartPage()),
+    // Checkout Page Route
+    GetPage(name: '/checkout', page: () => const CheckoutPage()),
   ];
 }
