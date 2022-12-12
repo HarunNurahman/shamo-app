@@ -2,6 +2,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/route.dart';
 
 void main() => runApp(const MyApp());
@@ -18,13 +20,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      // useInheritedMediaQuery: true,
-      // locale: DevicePreview.locale(context),
-      // builder: DevicePreview.appBuilder,
-      debugShowCheckedModeBanner: false,
-      getPages: PageRoutes.pages,
-      initialRoute: '/',
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => AuthProvider(),
+        )
+      ],
+      child: GetMaterialApp(
+        // useInheritedMediaQuery: true,
+        // locale: DevicePreview.locale(context),
+        // builder: DevicePreview.appBuilder,
+        debugShowCheckedModeBanner: false,
+        getPages: PageRoutes.pages,
+        initialRoute: '/',
+      ),
     );
   }
 }

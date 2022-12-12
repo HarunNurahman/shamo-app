@@ -1,13 +1,60 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/pages/widgets/loading-button_widget.dart';
+import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/themes.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.register(
+        name: nameController.text,
+        username: usernameController.text,
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Get.offAllNamed('/dashboard');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Registrasi Gagal',
+              style: primaryTextStyle.copyWith(fontSize: 12),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     Widget header() {
       return Container(
         margin: EdgeInsets.only(top: defaultMargin),
@@ -63,6 +110,7 @@ class RegisterPage extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: nameController,
                         style: primaryTextStyle,
                         autocorrect: false,
                         enableSuggestions: false,
@@ -111,6 +159,7 @@ class RegisterPage extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: usernameController,
                         style: primaryTextStyle,
                         autocorrect: false,
                         enableSuggestions: false,
@@ -159,6 +208,7 @@ class RegisterPage extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: emailController,
                         style: primaryTextStyle,
                         autocorrect: false,
                         enableSuggestions: false,
@@ -207,6 +257,7 @@ class RegisterPage extends StatelessWidget {
                     const SizedBox(width: 16),
                     Expanded(
                       child: TextFormField(
+                        controller: passwordController,
                         style: primaryTextStyle,
                         obscureText: true,
                         decoration: InputDecoration.collapsed(
@@ -229,9 +280,7 @@ class RegisterPage extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: ElevatedButton(
-            onPressed: () {
-              Get.toNamed('/dashboard');
-            },
+            onPressed: handleSignUp,
             style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
@@ -259,7 +308,7 @@ class RegisterPage extends StatelessWidget {
               usernameInput(),
               emailInput(),
               passwordInput(),
-              submitButton(),
+              isLoading ? LoadingButton() : submitButton(),
             ],
           )
         ],
@@ -268,7 +317,7 @@ class RegisterPage extends StatelessWidget {
 
     Widget footer() {
       return Padding(
-        padding: EdgeInsets.only(bottom: defaultMargin),
+        padding: EdgeInsets.only(bottom: defaultMargin, top: defaultMargin),
         child: Center(
           child: RichText(
             text: TextSpan(
@@ -293,19 +342,20 @@ class RegisterPage extends StatelessWidget {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: bgColor1,
       body: SafeArea(
-        child: Container(
-          margin: EdgeInsets.symmetric(horizontal: defaultMargin),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              header(),
-              textInput(),
-              footer(),
-            ],
+        child: SingleChildScrollView(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: defaultMargin),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                header(),
+                textInput(),
+                footer(),
+              ],
+            ),
           ),
         ),
       ),
