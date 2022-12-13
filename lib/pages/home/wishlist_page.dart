@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shamo/pages/widgets/wishlist_card.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class WishlistPage extends StatelessWidget {
   const WishlistPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class CategoryWidget extends StatelessWidget {
   const CategoryWidget({

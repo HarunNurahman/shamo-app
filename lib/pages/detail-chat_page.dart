@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/pages/widgets/chat-bubble_widget.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class DetailChatPage extends StatelessWidget {
   const DetailChatPage({super.key});

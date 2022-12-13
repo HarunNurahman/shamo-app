@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/providers/auth_provider.dart';
-import 'package:shamo/route.dart';
+import 'package:shamo/config/route.dart';
 
 void main() => runApp(const MyApp());
 

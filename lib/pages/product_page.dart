@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({super.key});

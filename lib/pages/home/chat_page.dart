@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shamo/config/themes.dart';
 import 'package:shamo/pages/widgets/chat_tile.dart';
-import 'package:shamo/themes.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});

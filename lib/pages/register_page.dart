@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/loading-button_widget.dart';
 import 'package:shamo/providers/auth_provider.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

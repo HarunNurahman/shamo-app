@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shamo/pages/widgets/category_widget.dart';
 import 'package:shamo/pages/widgets/product_card.dart';
 import 'package:shamo/pages/widgets/product_tile.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

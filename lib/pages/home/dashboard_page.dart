@@ -4,7 +4,7 @@ import 'package:shamo/pages/home/chat_page.dart';
 import 'package:shamo/pages/home/home_page.dart';
 import 'package:shamo/pages/home/profile_page.dart';
 import 'package:shamo/pages/home/wishlist_page.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});

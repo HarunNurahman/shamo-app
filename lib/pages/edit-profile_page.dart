@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/pages/widgets/edit-profile_input.dart';
-import 'package:shamo/themes.dart';
+import 'package:shamo/config/themes.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
