@@ -20,11 +20,19 @@ class _RegisterPageState extends State<RegisterPage> {
   TextEditingController passwordController = TextEditingController();
 
   bool isLoading = false;
+  bool isObsecure = false;
+
+  @override
+  void initState() {
+    isObsecure;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
+    // Function untuk menghandle button register dan mengirim data ke AuthProvider
     handleSignUp() async {
       setState(() {
         isLoading = true;
@@ -92,35 +100,70 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 12),
+            // Container(
+            //   height: 50,
+            //   margin: const EdgeInsets.only(bottom: 20),
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   decoration: BoxDecoration(
+            //     color: bgColor2,
+            //     borderRadius: BorderRadius.circular(defaultRadius),
+            //     border: Border.all(color: primaryColor),
+            //   ),
+            //   child: Center(
+            //     child: Row(
+            //       children: [
+            //         Image.asset(
+            //           'assets/icons/ic_name.png',
+            //           width: 17,
+            //         ),
+            //         const SizedBox(width: 16),
+            //         Expanded(
+            //           child: TextFormField(
+            //             controller: nameController,
+            //             style: primaryTextStyle,
+            //             autocorrect: false,
+            //             enableSuggestions: false,
+            //             decoration: InputDecoration.collapsed(
+            //               hintText: 'Your Full Name',
+            //               hintStyle: subtitleTextStyle,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Container(
-              height: 50,
               margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: bgColor2,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/ic_name.png',
-                      width: 17,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: TextFormField(
-                        controller: nameController,
-                        style: primaryTextStyle,
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Full Name',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    )
-                  ],
+              height: 50,
+              child: TextFormField(
+                autocorrect: false,
+                style: primaryTextStyle,
+                enableSuggestions: false,
+                keyboardType: TextInputType.text,
+                obscureText: false,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                controller: nameController,
+                decoration: InputDecoration(
+                  hintText: 'Your Full Name',
+                  hintStyle: subtitleTextStyle,
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  fillColor: bgColor2,
+                  filled: true,
+                  prefixIcon: Icon(
+                    Icons.person,
+                    color: primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
             ),
@@ -141,35 +184,69 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 12),
+            // Container(
+            //   height: 50,
+            //   margin: const EdgeInsets.only(bottom: 20),
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   decoration: BoxDecoration(
+            //     color: bgColor2,
+            //     borderRadius: BorderRadius.circular(defaultRadius),
+            //   ),
+            //   child: Center(
+            //     child: Row(
+            //       children: [
+            //         Image.asset(
+            //           'assets/icons/ic_username.png',
+            //           width: 17,
+            //         ),
+            //         const SizedBox(width: 16),
+            //         Expanded(
+            //           child: TextFormField(
+            //             controller: usernameController,
+            //             style: primaryTextStyle,
+            //             autocorrect: false,
+            //             enableSuggestions: false,
+            //             decoration: InputDecoration.collapsed(
+            //               hintText: 'Your Username',
+            //               hintStyle: subtitleTextStyle,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Container(
-              height: 50,
               margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: bgColor2,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/ic_username.png',
-                      width: 17,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: TextFormField(
-                        controller: usernameController,
-                        style: primaryTextStyle,
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Username',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    )
-                  ],
+              height: 50,
+              child: TextFormField(
+                autocorrect: false,
+                style: primaryTextStyle,
+                enableSuggestions: false,
+                keyboardType: TextInputType.text,
+                obscureText: false,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                controller: usernameController,
+                decoration: InputDecoration(
+                  hintText: 'Your Username',
+                  hintStyle: subtitleTextStyle,
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  fillColor: bgColor2,
+                  filled: true,
+                  prefixIcon: Icon(
+                    Icons.abc,
+                    color: primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
             ),
@@ -190,35 +267,69 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 12),
+            // Container(
+            //   height: 50,
+            //   margin: const EdgeInsets.only(bottom: 20),
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   decoration: BoxDecoration(
+            //     color: bgColor2,
+            //     borderRadius: BorderRadius.circular(defaultRadius),
+            //   ),
+            //   child: Center(
+            //     child: Row(
+            //       children: [
+            //         Image.asset(
+            //           'assets/icons/ic_email.png',
+            //           width: 17,
+            //         ),
+            //         const SizedBox(width: 16),
+            //         Expanded(
+            //           child: TextFormField(
+            //             controller: emailController,
+            //             style: primaryTextStyle,
+            //             autocorrect: false,
+            //             enableSuggestions: false,
+            //             decoration: InputDecoration.collapsed(
+            //               hintText: 'Your Email Address',
+            //               hintStyle: subtitleTextStyle,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Container(
-              height: 50,
               margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: bgColor2,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/ic_email.png',
-                      width: 17,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: TextFormField(
-                        controller: emailController,
-                        style: primaryTextStyle,
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Email Address',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    )
-                  ],
+              height: 50,
+              child: TextFormField(
+                autocorrect: false,
+                style: primaryTextStyle,
+                enableSuggestions: false,
+                keyboardType: TextInputType.emailAddress,
+                obscureText: false,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                controller: emailController,
+                decoration: InputDecoration(
+                  hintText: 'Your Email',
+                  hintStyle: subtitleTextStyle,
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  fillColor: bgColor2,
+                  filled: true,
+                  prefixIcon: Icon(
+                    Icons.email_rounded,
+                    color: primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
             ),
@@ -239,34 +350,86 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
             ),
             const SizedBox(height: 12),
+            // Container(
+            //   height: 50,
+            //   margin: const EdgeInsets.only(bottom: 30),
+            //   padding: const EdgeInsets.symmetric(horizontal: 16),
+            //   decoration: BoxDecoration(
+            //     color: bgColor2,
+            //     borderRadius: BorderRadius.circular(defaultRadius),
+            //   ),
+            //   child: Center(
+            //     child: Row(
+            //       children: [
+            //         Image.asset(
+            //           'assets/icons/ic_password.png',
+            //           width: 17,
+            //         ),
+            //         const SizedBox(width: 16),
+            //         Expanded(
+            //           child: TextFormField(
+            //             controller: passwordController,
+            //             style: primaryTextStyle,
+            //             obscureText: true,
+            //             decoration: InputDecoration.collapsed(
+            //               hintText: 'Your Password',
+            //               hintStyle: subtitleTextStyle,
+            //             ),
+            //           ),
+            //         )
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Container(
+              margin: const EdgeInsets.only(bottom: 20),
               height: 50,
-              margin: const EdgeInsets.only(bottom: 30),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: bgColor2,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    Image.asset(
-                      'assets/icons/ic_password.png',
-                      width: 17,
+              child: TextFormField(
+                autocorrect: false,
+                style: primaryTextStyle,
+                enableSuggestions: false,
+                keyboardType: TextInputType.text,
+                obscureText: !isObsecure,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  suffixIcon: Theme(
+                    data: ThemeData(
+                      splashFactory: NoSplash.splashFactory,
+                      splashColor: transparentColor,
+                      highlightColor: transparentColor,
                     ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: TextFormField(
-                        controller: passwordController,
-                        style: primaryTextStyle,
-                        obscureText: true,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Password',
-                          hintStyle: subtitleTextStyle,
-                        ),
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isObsecure = !isObsecure;
+                        });
+                      },
+                      icon: Icon(
+                        isObsecure ? Icons.visibility : Icons.visibility_off,
+                        color: primaryColor,
                       ),
-                    )
-                  ],
+                    ),
+                  ),
+                  hintText: 'Your Password',
+                  hintStyle: subtitleTextStyle,
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  fillColor: bgColor2,
+                  filled: true,
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
             ),

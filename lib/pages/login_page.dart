@@ -3,12 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/config/themes.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  bool isObsecure = false;
+
+  @override
+  void initState() {
+    isObsecure;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     // Header Widget
     Widget header() {
       return Container(
@@ -52,35 +67,36 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Container(
-              height: 50,
               margin: const EdgeInsets.only(bottom: 20),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: bgColor2,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    // Prefix Icon
-                    Image.asset(
-                      'assets/icons/ic_email.png',
-                      width: 17,
-                    ),
-                    const SizedBox(width: 16),
-                    // Text Field
-                    Expanded(
-                      child: TextFormField(
-                        style: primaryTextStyle,
-                        autocorrect: false,
-                        enableSuggestions: false,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Email Address',
-                          hintStyle: subtitleTextStyle,
-                        ),
-                      ),
-                    )
-                  ],
+              height: 50,
+              child: TextFormField(
+                autocorrect: false,
+                style: primaryTextStyle,
+                enableSuggestions: false,
+                keyboardType: TextInputType.emailAddress,
+                obscureText: false,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                controller: emailController,
+                decoration: InputDecoration(
+                  hintText: 'Your Email',
+                  hintStyle: subtitleTextStyle,
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  fillColor: bgColor2,
+                  filled: true,
+                  prefixIcon: Icon(
+                    Icons.email_rounded,
+                    color: primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
             ),
@@ -103,34 +119,54 @@ class LoginPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Container(
+              margin: const EdgeInsets.only(bottom: 20),
               height: 50,
-              margin: const EdgeInsets.only(bottom: 30),
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                color: bgColor2,
-                borderRadius: BorderRadius.circular(defaultRadius),
-              ),
-              child: Center(
-                child: Row(
-                  children: [
-                    // Prefix Icon
-                    Image.asset(
-                      'assets/icons/ic_password.png',
-                      width: 17,
+              child: TextFormField(
+                autocorrect: false,
+                style: primaryTextStyle,
+                enableSuggestions: false,
+                keyboardType: TextInputType.text,
+                obscureText: !isObsecure,
+                textAlign: TextAlign.left,
+                textAlignVertical: TextAlignVertical.center,
+                controller: passwordController,
+                decoration: InputDecoration(
+                  suffixIcon: Theme(
+                    data: ThemeData(
+                      splashFactory: NoSplash.splashFactory,
+                      splashColor: transparentColor,
+                      highlightColor: transparentColor,
                     ),
-                    const SizedBox(width: 16),
-                    // Text Field
-                    Expanded(
-                      child: TextFormField(
-                        style: primaryTextStyle,
-                        obscureText: true,
-                        decoration: InputDecoration.collapsed(
-                          hintText: 'Your Password',
-                          hintStyle: subtitleTextStyle,
-                        ),
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isObsecure = !isObsecure;
+                        });
+                      },
+                      icon: Icon(
+                        isObsecure ? Icons.visibility : Icons.visibility_off,
+                        color: primaryColor,
                       ),
-                    )
-                  ],
+                    ),
+                  ),
+                  hintText: 'Your Password',
+                  hintStyle: subtitleTextStyle,
+                  contentPadding: const EdgeInsets.all(16),
+                  border: InputBorder.none,
+                  fillColor: bgColor2,
+                  filled: true,
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: primaryColor,
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide.none,
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(defaultRadius),
+                    borderSide: BorderSide(color: primaryColor),
+                  ),
                 ),
               ),
             ),

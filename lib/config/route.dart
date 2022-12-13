@@ -15,7 +15,7 @@ class PageRoutes {
     // Initial Route (Splash Screen)
     GetPage(name: '/', page: () => const SplashPage()),
     // Login Page Route
-    GetPage(name: '/login', page: () => const LoginPage()),
+    GetPage(name: '/login', page: () => LoginPage()),
     // Register Page Route
     GetPage(name: '/register', page: () => RegisterPage()),
     // Dashboard Page Route
