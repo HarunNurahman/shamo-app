@@ -298,26 +298,29 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       }
 
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              nameInput(),
-              usernameInput(),
-              emailInput(),
-              passwordInput(),
-              isLoading ? LoadingButton() : submitButton(),
-            ],
-          )
-        ],
+      return Container(
+        margin: EdgeInsets.only(top: defaultMargin),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                nameInput(),
+                usernameInput(),
+                emailInput(),
+                passwordInput(),
+                isLoading ? LoadingButton() : submitButton(),
+              ],
+            )
+          ],
+        ),
       );
     }
 
     Widget footer() {
-      return Padding(
-        padding: EdgeInsets.only(bottom: defaultMargin, top: defaultMargin),
+      return Container(
+        margin: EdgeInsets.only(bottom: defaultMargin, top: defaultMargin),
         child: Center(
           child: RichText(
             text: TextSpan(
