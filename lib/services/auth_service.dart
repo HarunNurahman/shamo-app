@@ -19,10 +19,10 @@ class AuthService {
     var header = {'Content-Type': 'application/json'};
     // Encode JSON
     var body = jsonEncode({
-      'name': name,
-      'username': username,
-      'email': email,
-      'password': password,
+      'name': name!,
+      'username': username!,
+      'email': email!,
+      'password': password!,
     });
 
     // Response untuk melakukan request kedalam back-end (POST)
@@ -59,8 +59,8 @@ class AuthService {
     var header = {'Content-Type': 'application/json'};
     // Encode JSON
     var body = jsonEncode({
-      'email': email,
-      'password': password,
+      'email': email!,
+      'password': password!,
     });
 
     // Response untuk melakukan request kedalam back-end (POST)

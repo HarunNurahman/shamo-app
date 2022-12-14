@@ -24,10 +24,10 @@ class AuthProvider with ChangeNotifier {
     // Try Catch apakah registrasi berhasil atau tidak
     try {
       UserModel user = await AuthService().register(
-        name: name,
-        username: username,
-        email: email,
-        password: password,
+        name: name!,
+        username: username!,
+        email: email!,
+        password: password!,
       );
 
       _user = user;
@@ -46,8 +46,8 @@ class AuthProvider with ChangeNotifier {
     // Try Catch apakah registrasi berhasil atau tidak
     try {
       UserModel user = await AuthService().login(
-        email: email,
-        password: password,
+        email: email!,
+        password: password!,
       );
 
       _user = user;

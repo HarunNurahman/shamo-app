@@ -85,7 +85,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       width: 20,
                       color: currentIndex == 1
                           ? primaryColor
-                          : const Color(0xFF808191),
+                          : Color(0xFF808191),
                     ),
                   ),
                   label: '',
@@ -139,7 +139,7 @@ class _DashboardPageState extends State<DashboardPage> {
         case 2:
           return const WishlistPage();
         case 3:
-          return const ProfilePage();
+          return ProfilePage();
         default:
           return const HomePage();
       }

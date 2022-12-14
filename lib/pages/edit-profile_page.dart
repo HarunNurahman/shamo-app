@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/models/user_model.dart';
 import 'package:shamo/pages/widgets/edit-profile_input.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/auth_provider.dart';
 
 class EditProfilePage extends StatelessWidget {
   const EditProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel userModel = authProvider.user;
+
     // Header Widget
     PreferredSizeWidget header() {
       return AppBar(
@@ -49,8 +55,8 @@ class EditProfilePage extends StatelessWidget {
         return Center(
           child: CircleAvatar(
             radius: defaultMargin + 20, // 30 + 20
-            backgroundImage: const AssetImage(
-              'assets/icons/ic_profile_pic.png',
+            backgroundImage: NetworkImage(
+              userModel.profilePhotoUrl.toString(),
             ),
           ),
         );
@@ -59,18 +65,18 @@ class EditProfilePage extends StatelessWidget {
       // TextField Widget
       Widget inputType() {
         return Column(
-          children: const [
+          children: [
             EditProfileInput(
               title: 'Full Name',
-              hint: 'Harun Nurahman',
+              hint: '${userModel.name}',
             ),
             EditProfileInput(
               title: 'Username',
-              hint: '@harunamanya',
+              hint: '@${userModel.username}',
             ),
             EditProfileInput(
               title: 'Email',
-              hint: 'harun.nurrahman@gmail.com',
+              hint: '${userModel.email}',
             ),
           ],
         );

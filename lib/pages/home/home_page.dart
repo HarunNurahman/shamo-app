@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/models/user_model.dart';
 import 'package:shamo/pages/widgets/category_widget.dart';
 import 'package:shamo/pages/widgets/product_card.dart';
 import 'package:shamo/pages/widgets/product_tile.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/auth_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel userModel = authProvider.user;
+
     // Header Widget (Profile name and username and profile picture)
     Widget header() {
       return Row(
@@ -19,7 +25,7 @@ class HomePage extends StatelessWidget {
               children: [
                 // Title
                 Text(
-                  'Hello, Harun',
+                  'Hello, ${userModel.name}', // Mengambil value 'name' dari UserModel yang terhubung dari authProvider
                   style: primaryTextStyle.copyWith(
                     fontSize: 24,
                     fontWeight: semibold,
@@ -29,14 +35,17 @@ class HomePage extends StatelessWidget {
                 ),
                 // Username
                 Text(
-                  '@Harunamanya',
+                  '@${userModel.username}', // Mengambil value 'username'
                   style: subtitleTextStyle.copyWith(fontSize: 16),
                 )
               ],
             ),
           ),
           // Profile Picture
-          Image.asset('assets/icons/ic_profile_pic.png', width: 56),
+          CircleAvatar(
+            radius: 32,
+            backgroundImage: NetworkImage(userModel.profilePhotoUrl.toString()),
+          )
         ],
       );
     }
