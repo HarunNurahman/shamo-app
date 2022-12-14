@@ -27,9 +27,9 @@ class LoadingButton extends StatelessWidget {
                 valueColor: AlwaysStoppedAnimation(primaryTextColor),
               ),
             ),
-            SizedBox(width: 4),
+            SizedBox(width: 6),
             Text(
-              'Sign Up',
+              'Loading',
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: medium,

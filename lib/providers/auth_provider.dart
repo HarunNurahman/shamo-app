@@ -13,7 +13,7 @@ class AuthProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  // Function untuk melakukan register
+  // Function untuk mengeksekusi register
   // type data boolean untuk mengecek apakah registrasi berhasil atau tidak
   Future<bool> register({
     String? name,
@@ -26,6 +26,26 @@ class AuthProvider with ChangeNotifier {
       UserModel user = await AuthService().register(
         name: name,
         username: username,
+        email: email,
+        password: password,
+      );
+
+      _user = user;
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  // Function untuk mengeksekusi login
+  Future<bool> login({
+    String? email,
+    String? password,
+  }) async {
+    // Try Catch apakah registrasi berhasil atau tidak
+    try {
+      UserModel user = await AuthService().login(
         email: email,
         password: password,
       );

@@ -1,7 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/pages/widgets/loading-button_widget.dart';
+import 'package:shamo/providers/auth_provider.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -15,6 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController passwordController = TextEditingController();
 
   bool isObsecure = false;
+  bool isLoading = false;
 
   @override
   void initState() {
@@ -24,6 +28,37 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    // Function untuk menghandle button login dan mengirim data ke AuthProvider
+    handleLogin() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await authProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
+        Get.offAllNamed('/dashboard');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Login Gagal',
+              style: primaryTextStyle.copyWith(fontSize: 12),
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     // Header Widget
     Widget header() {
       return Container(
@@ -180,9 +215,7 @@ class _LoginPageState extends State<LoginPage> {
           width: double.infinity,
           height: 50,
           child: ElevatedButton(
-            onPressed: () {
-              Get.offAndToNamed('/dashboard');
-            },
+            onPressed: handleLogin,
             style: ElevatedButton.styleFrom(
               backgroundColor: primaryColor,
               shape: RoundedRectangleBorder(
@@ -208,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               emailInput(),
               passwordInput(),
-              submitButton(),
+              isLoading ? LoadingButton() : submitButton(),
             ],
           )
         ],
