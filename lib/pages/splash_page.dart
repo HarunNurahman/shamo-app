@@ -2,7 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/product_provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -14,11 +16,14 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
-    Timer(
-      const Duration(seconds: 3),
-      () => Get.offAllNamed('/login'),
-    );
+    getInit();
     super.initState();
+  }
+
+  getInit() async {
+    // Mengambil data produk
+    await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    Get.offAllNamed('/login');
   }
 
   @override

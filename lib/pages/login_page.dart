@@ -36,10 +36,12 @@ class _LoginPageState extends State<LoginPage> {
         isLoading = true;
       });
 
+
       if (await authProvider.login(
         email: emailController.text,
         password: passwordController.text,
       )) {
+        
         Get.offAllNamed('/dashboard');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
