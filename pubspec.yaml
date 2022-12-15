@@ -34,11 +34,11 @@ dependencies:
   device_preview: ^1.1.0
   flutter:
     sdk: flutter
-  flutter_session: ^0.1.1
   get: ^4.6.5
   google_fonts: ^3.0.1
   http: ^0.13.5
   provider: ^6.0.4
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_lints: ^2.0.0

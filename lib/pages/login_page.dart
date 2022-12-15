@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/pages/widgets/loading-button_widget.dart';
 import 'package:shamo/providers/auth_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({super.key});
@@ -36,12 +37,14 @@ class _LoginPageState extends State<LoginPage> {
         isLoading = true;
       });
 
-
       if (await authProvider.login(
         email: emailController.text,
         password: passwordController.text,
       )) {
-        
+        final SharedPreferences sharedPreferences =
+            await SharedPreferences.getInstance();
+        sharedPreferences.setString('token', emailController.text);
+
         Get.offAllNamed('/dashboard');
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

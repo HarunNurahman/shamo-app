@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/models/user_model.dart';
 import 'package:shamo/providers/auth_provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -53,7 +54,12 @@ class ProfilePage extends StatelessWidget {
                 ),
                 // Logout Button
                 GestureDetector(
-                  onTap: () => Get.offAllNamed('/login'),
+                  onTap: () async {
+                    final SharedPreferences sharedPreferences =
+                        await SharedPreferences.getInstance();
+                    sharedPreferences.remove('token');
+                    Get.offAllNamed('/login');
+                  },
                   child: Image.asset('assets/icons/ic_logout.png', width: 20),
                 ),
               ],
