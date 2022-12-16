@@ -47,9 +47,8 @@ class HomePage extends StatelessWidget {
           // Profile Picture
           CircleAvatar(
             radius: 32,
-            backgroundImage: NetworkImage(
-              userModel.profilePhotoUrl!.toString(),
-            ),
+            backgroundImage:
+                NetworkImage(userModel.profilePhotoUrl!.toString()),
           )
         ],
       );
