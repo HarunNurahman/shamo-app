@@ -6,6 +6,7 @@ import 'package:shamo/pages/widgets/product_card.dart';
 import 'package:shamo/pages/widgets/product_tile.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/providers/auth_provider.dart';
+import 'package:shamo/providers/product_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -14,6 +15,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel userModel = authProvider.user;
+
+    ProductProvider productProvider = Provider.of<ProductProvider>(context);
 
     // Header Widget (Profile name and username and profile picture)
     Widget header() {
@@ -25,7 +28,7 @@ class HomePage extends StatelessWidget {
               children: [
                 // Title
                 Text(
-                  'Hello, ${userModel.name}', // Mengambil value 'name' dari UserModel yang terhubung dari authProvider
+                  'Hello, ${userModel.name!}', // Mengambil value 'name' dari UserModel yang terhubung dari authProvider
                   style: primaryTextStyle.copyWith(
                     fontSize: 24,
                     fontWeight: semibold,
@@ -35,7 +38,7 @@ class HomePage extends StatelessWidget {
                 ),
                 // Username
                 Text(
-                  '@${userModel.username}', // Mengambil value 'username'
+                  '@${userModel.username!}', // Mengambil value 'username'
                   style: subtitleTextStyle.copyWith(fontSize: 16),
                 )
               ],
@@ -44,7 +47,8 @@ class HomePage extends StatelessWidget {
           // Profile Picture
           CircleAvatar(
             radius: 32,
-            backgroundImage: NetworkImage(userModel.profilePhotoUrl.toString()),
+            backgroundImage:
+                NetworkImage(userModel.profilePhotoUrl!.toString()),
           )
         ],
       );
@@ -123,26 +127,16 @@ class HomePage extends StatelessWidget {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: const [
-                  ProductCard(
-                    imgUrl: 'assets/images/img_shoes-1.png',
-                    category: 'Hiking',
-                    productName: 'Court Vision 2.0',
-                    price: '\$58.67',
-                  ),
-                  ProductCard(
-                    imgUrl: 'assets/images/img_shoes-2.png',
-                    category: 'Hiking',
-                    productName: 'Terrex Urban Low',
-                    price: '\$143.98',
-                  ),
-                  ProductCard(
-                    imgUrl: 'assets/images/img_shoes-3.png',
-                    category: 'Running',
-                    productName: 'SL20 Shoes',
-                    price: '\$123.82',
-                  ),
-                ],
+                children: productProvider.products
+                    .map(
+                      (product) => ProductCard(
+                        imgUrl: product.galleries![0].url!,
+                        category: product.category!.id!.toString(),
+                        productName: product.name!,
+                        price: product.price!.toString(),
+                      ),
+                    )
+                    .toList(),
               ),
             ),
           ],
