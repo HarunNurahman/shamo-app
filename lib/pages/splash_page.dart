@@ -24,7 +24,14 @@ class _SplashPageState extends State<SplashPage> {
     //   await Provider.of<ProductProvider>(context, listen: false).getProducts();
     //   Get.offAllNamed(getToken == null ? '/login' : '/dashboard');
     // });
+    getInit();
     super.initState();
+  }
+
+  getInit() async {
+    // Mengambil data produk
+    await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    Get.offAllNamed('/login');
   }
 
   // Future getValidationData() async {

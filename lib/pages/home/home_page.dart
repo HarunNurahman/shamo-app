@@ -128,14 +128,7 @@ class HomePage extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: productProvider.products
-                    .map(
-                      (product) => ProductCard(
-                        imgUrl: product.galleries![0].url!,
-                        category: product.category!.id!.toString(),
-                        productName: product.name!,
-                        price: product.price!.toString(),
-                      ),
-                    )
+                    .map((product) => ProductCard(product))
                     .toList(),
               ),
             ),
@@ -161,32 +154,11 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: 14),
             // Product List
             Column(
-              children: const [
-                ProductTile(
-                  imgUrl: 'assets/images/img_shoes-4.png',
-                  category: 'Football',
-                  productName: 'Predator 20.3 Firm Ground',
-                  price: '\$68.47',
-                ),
-                ProductTile(
-                  imgUrl: 'assets/images/img_shoes-5.png',
-                  category: 'Running',
-                  productName: 'Ultra 4D 5 Shoes',
-                  price: '\$285.73',
-                ),
-                ProductTile(
-                  imgUrl: 'assets/images/img_shoes-6.png',
-                  category: 'Basketball',
-                  productName: 'Court Vision 2.0 Shoes',
-                  price: '\$57.15',
-                ),
-                ProductTile(
-                  imgUrl: 'assets/images/img_shoes-4.png',
-                  category: 'Training',
-                  productName: 'LEGO® SPORT SHOES',
-                  price: '\$92.72',
-                ),
-              ],
+              children: productProvider.products
+                  .map(
+                    (product) => ProductTile(product),
+                  )
+                  .toList(),
             )
           ],
         ),

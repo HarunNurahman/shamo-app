@@ -53,14 +53,17 @@ class ProfilePage extends StatelessWidget {
                   ),
                 ),
                 // Logout Button
-                GestureDetector(
-                  onTap: () async {
-                    final SharedPreferences sharedPreferences =
-                        await SharedPreferences.getInstance();
-                    sharedPreferences.remove('token');
-                    Get.offAllNamed('/login');
-                  },
-                  child: Image.asset('assets/icons/ic_logout.png', width: 20),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      final SharedPreferences sharedPreferences =
+                          await SharedPreferences.getInstance();
+                      sharedPreferences.remove('token');
+                      Get.offAllNamed('/login');
+                    },
+                    child: Image.asset('assets/icons/ic_logout.png', width: 20),
+                  ),
                 ),
               ],
             ),

@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/models/product_model.dart';
 
 class ProductTile extends StatelessWidget {
-  const ProductTile({
-    super.key,
-    required this.imgUrl,
-    required this.category,
-    required this.productName,
-    required this.price,
-  });
+  final ProductModel product;
 
-  final String imgUrl;
-  final String category;
-  final String productName;
-  final String price;
+  ProductTile(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +18,8 @@ class ProductTile extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                imgUrl,
+              child: Image.network(
+                product.galleries![0].url!,
                 width: 120,
                 height: 120,
                 fit: BoxFit.cover,
@@ -39,24 +31,24 @@ class ProductTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    category,
+                    product.category!.name!,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
                   ),
                   SizedBox(height: defaultRadius - 6), // 12 - 6
                   Text(
-                    productName,
+                    product.name!,
+                    maxLines: 2,
                     style: primaryTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semibold,
                       overflow: TextOverflow.ellipsis,
                     ),
-                    maxLines: 2,
                   ),
                   SizedBox(height: defaultRadius - 6), // 12 - 6
                   Text(
-                    price,
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),

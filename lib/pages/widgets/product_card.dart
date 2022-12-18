@@ -1,20 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({
-    super.key,
-    required this.imgUrl,
-    required this.category,
-    required this.productName,
-    required this.price,
-  });
+  final ProductModel product;
 
-  final String imgUrl;
-  final String category;
-  final String productName;
-  final String price;
+  ProductCard(this.product);
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +25,8 @@ class ProductCard extends StatelessWidget {
           children: [
             SizedBox(height: defaultMargin),
             // Product Image
-            Image.asset(
-              imgUrl,
+            Image.network(
+              product.galleries![0].url!,
               width: 215,
               height: 150,
               fit: BoxFit.cover,
@@ -46,7 +38,7 @@ class ProductCard extends StatelessWidget {
                 children: [
                   // Shoes Category
                   Text(
-                    category,
+                    product.category!.name!,
                     style: secondaryTextStyle.copyWith(
                       fontSize: 12,
                     ),
@@ -54,7 +46,8 @@ class ProductCard extends StatelessWidget {
                   const SizedBox(height: 6),
                   // Shoes Brand
                   Text(
-                    productName.toUpperCase(),
+                    product.name!.toUpperCase(),
+                    maxLines: 1,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: semibold,
@@ -64,7 +57,7 @@ class ProductCard extends StatelessWidget {
                   const SizedBox(height: 6),
                   // Price
                   Text(
-                    price,
+                    '\$${product.price}',
                     style: priceTextStyle.copyWith(fontWeight: semibold),
                   )
                 ],
