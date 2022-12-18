@@ -15,26 +15,27 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  String? getToken;
+  // String? getToken;
 
   @override
   void initState() {
-    getValidationData().whenComplete(() async {
-      await Provider.of<ProductProvider>(context, listen: false).getProducts();
-      Get.offAllNamed(getToken == null ? '/login' : '/dashboard');
-    });
+    // Session
+    // getValidationData().whenComplete(() async {
+    //   await Provider.of<ProductProvider>(context, listen: false).getProducts();
+    //   Get.offAllNamed(getToken == null ? '/login' : '/dashboard');
+    // });
     super.initState();
   }
 
-  Future getValidationData() async {
-    final SharedPreferences sharedPreferences =
-        await SharedPreferences.getInstance();
-    var token = sharedPreferences.getString('token');
-    setState(() {
-      getToken = token;
-    });
-    print(token);
-  }
+  // Future getValidationData() async {
+  //   final SharedPreferences sharedPreferences =
+  //       await SharedPreferences.getInstance();
+  //   var token = sharedPreferences.getString('token');
+  //   setState(() {
+  //     getToken = token;
+  //   });
+  //   print(token);
+  // }
 
   @override
   Widget build(BuildContext context) {

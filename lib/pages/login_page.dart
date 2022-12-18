@@ -41,9 +41,10 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       )) {
-        final SharedPreferences sharedPreferences =
-            await SharedPreferences.getInstance();
-        sharedPreferences.setString('token', emailController.text);
+        // Session
+        // final SharedPreferences sharedPreferences =
+        //     await SharedPreferences.getInstance();
+        // sharedPreferences.setString('token', emailController.text);
 
         Get.offAllNamed('/dashboard');
       } else {
