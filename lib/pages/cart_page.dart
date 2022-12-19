@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/cart_card.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/cart_provider.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+
     // Header (Page Title, Back Button)
     PreferredSizeWidget header() {
       return AppBar(
@@ -88,18 +92,7 @@ class CartPage extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.symmetric(horizontal: defaultMargin),
           child: ListView(
-            children: const [
-              CartCard(
-                imgUrl: 'assets/images/img_shoes-1.png',
-                productName: 'Terrex Urban Low',
-                productPrice: '\$143.98',
-              ),
-              CartCard(
-                imgUrl: 'assets/images/img_shoes-3.png',
-                productName: 'Court Vision 2.0 Shoes Limited Edition',
-                productPrice: '\$57.15',
-              ),
-            ],
+            children: cartProvider.carts.map((cart) => CartCard(cart)).toList(),
           ),
         ),
       );
@@ -118,7 +111,7 @@ class CartPage extends StatelessWidget {
                 children: [
                   Text('Subtotal', style: primaryTextStyle),
                   Text(
-                    '\$287.96',
+                    '\$${cartProvider.totalPrice()}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semibold,
@@ -177,11 +170,11 @@ class CartPage extends StatelessWidget {
       appBar: header(),
       body: Column(
         children: [
-          // emptyCart(),
-          contentCart(),
+          cartProvider.carts.isEmpty ? emptyCart() : contentCart(),
         ],
       ),
-      bottomNavigationBar: customBottomNav(),
+      bottomNavigationBar:
+          cartProvider.carts.isEmpty ? const SizedBox() : customBottomNav(),
     );
   }
 }

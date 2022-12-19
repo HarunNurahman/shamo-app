@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/models/product_model.dart';
+import 'package:shamo/providers/cart_provider.dart';
 import 'package:shamo/providers/wishlist_provider.dart';
 
 class ProductPage extends StatefulWidget {
@@ -40,6 +41,7 @@ class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
 
     Future<void> showSuccessDialog() async {
       return showDialog(
@@ -407,6 +409,7 @@ class _ProductPageState extends State<ProductPage> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
+                          cartProvider.addCart(widget.product);
                           showSuccessDialog();
                         },
                         style: ElevatedButton.styleFrom(
