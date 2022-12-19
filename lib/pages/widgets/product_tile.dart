@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/models/product_model.dart';
+import 'package:shamo/pages/product_page.dart';
 
 class ProductTile extends StatelessWidget {
   final ProductModel product;
@@ -11,7 +12,7 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed('/product'),
+      onTap: () => Get.to(() => ProductPage(product)),
       child: Padding(
         padding: EdgeInsets.only(bottom: defaultMargin),
         child: Row(

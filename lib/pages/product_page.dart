@@ -2,9 +2,12 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/models/product_model.dart';
 
 class ProductPage extends StatefulWidget {
-  const ProductPage({super.key});
+  ProductPage(this.product);
+
+  final ProductModel product;
 
   @override
   State<ProductPage> createState() => _ProductPageState();
@@ -17,11 +20,11 @@ class _ProductPageState extends State<ProductPage> {
   bool isWishlisted = false;
 
   // List for detail product image
-  final List productImage = [
-    'assets/images/img_shoes-1.png',
-    'assets/images/img_shoes-2.png',
-    'assets/images/img_shoes-3.png',
-  ];
+  // final List productImage = [
+  //   'assets/images/img_shoes-1.png',
+  //   'assets/images/img_shoes-2.png',
+  //   'assets/images/img_shoes-3.png',
+  // ];
 
   // List for similar product
   final List similarProduct = [
@@ -173,10 +176,10 @@ class _ProductPageState extends State<ProductPage> {
           ),
           // Image Carousel
           CarouselSlider(
-            items: productImage
+            items: widget.product.galleries!
                 .map(
-                  (image) => Image.asset(
-                    image,
+                  (image) => Image.network(
+                    image.url!,
                     width: MediaQuery.of(context).size.width,
                     height: 310,
                     fit: BoxFit.cover,
@@ -197,7 +200,7 @@ class _ProductPageState extends State<ProductPage> {
           // Dot Indicator Slider
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: productImage.map((e) {
+            children: widget.product.galleries!.map((e) {
               index++;
               return sliderIndicator(index);
             }).toList(),
@@ -232,7 +235,7 @@ class _ProductPageState extends State<ProductPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Terrex Urban Low'.toUpperCase(),
+                        widget.product.name!.toUpperCase(),
                         style: primaryTextStyle.copyWith(
                           fontSize: 18,
                           fontWeight: semibold,
@@ -241,7 +244,7 @@ class _ProductPageState extends State<ProductPage> {
                         overflow: TextOverflow.ellipsis,
                       ),
                       Text(
-                        'Hiking',
+                        widget.product.category!.name!,
                         style: secondaryTextStyle.copyWith(fontSize: 12),
                       )
                     ],
@@ -301,7 +304,7 @@ class _ProductPageState extends State<ProductPage> {
                 children: [
                   Text('Price starts from', style: primaryTextStyle),
                   Text(
-                    '\$143.98',
+                    '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontSize: 16,
                       fontWeight: semibold,
@@ -325,7 +328,7 @@ class _ProductPageState extends State<ProductPage> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    '''Unpaved trails and mixed surfaces are easy when you have the traction and support you need. Casual enough for the daily commute.''',
+                    widget.product.description!,
                     textAlign: TextAlign.justify,
                     style: subtitleTextStyle.copyWith(
                       fontWeight: light,

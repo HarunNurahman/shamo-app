@@ -24,8 +24,6 @@ class PageRoutes {
     GetPage(name: '/message', page: () => const DetailChatPage()),
     // Edit Profile Page Route
     GetPage(name: '/edit-profile', page: () => const EditProfilePage()),
-    // Product Page Route
-    GetPage(name: '/product', page: () => const ProductPage()),
     // Cart Page Route
     GetPage(name: '/cart', page: () => const CartPage()),
     // Checkout Page Route
