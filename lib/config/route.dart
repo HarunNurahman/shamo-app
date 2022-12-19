@@ -17,9 +17,9 @@ class PageRoutes {
     // Login Page Route
     GetPage(name: '/login', page: () => LoginPage()),
     // Register Page Route
-    GetPage(name: '/register', page: () => RegisterPage()),
+    GetPage(name: '/register', page: () => const RegisterPage()),
     // Dashboard Page Route
-    GetPage(name: '/dashboard', page: () => const DashboardPage()),
+    GetPage(name: '/dashboard', page: () => DashboardPage()),
     // Detail Chat Page Route
     GetPage(name: '/message', page: () => const DetailChatPage()),
     // Edit Profile Page Route

@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/config/route.dart';
 import 'package:shamo/providers/product_provider.dart';
+import 'package:shamo/providers/wishlist_provider.dart';
 
 void main() => runApp(const MyApp());
 
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => AuthProvider()),
-        ChangeNotifierProvider(create: (context) => ProductProvider())
+        ChangeNotifierProvider(create: (context) => ProductProvider()),
+        ChangeNotifierProvider(create: (context) => WishlistProvider()),
       ],
       child: GetMaterialApp(
         // useInheritedMediaQuery: true,

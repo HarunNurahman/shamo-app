@@ -1,8 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/models/product_model.dart';
+import 'package:shamo/providers/wishlist_provider.dart';
 
 class ProductPage extends StatefulWidget {
   ProductPage(this.product);
@@ -16,8 +18,6 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   // Current index for product image slider
   int currentIndex = 0;
-  // Default value for wishlist button
-  bool isWishlisted = false;
 
   // List for detail product image
   // final List productImage = [
@@ -39,6 +39,8 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     Future<void> showSuccessDialog() async {
       return showDialog(
         context: context,
@@ -152,7 +154,7 @@ class _ProductPageState extends State<ProductPage> {
         children: [
           Container(
             margin: EdgeInsets.only(
-              top: defaultMargin,
+              top: 40,
               left: defaultMargin,
               right: defaultMargin,
             ),
@@ -253,10 +255,9 @@ class _ProductPageState extends State<ProductPage> {
                 // Wishlist Button
                 GestureDetector(
                   onTap: () {
-                    setState(() {
-                      isWishlisted = !isWishlisted;
-                    });
-                    if (isWishlisted) {
+                    wishlistProvider.setProduct(widget.product);
+
+                    if (wishlistProvider.isWishlisted(widget.product)) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           backgroundColor: secondaryColor,
@@ -281,7 +282,7 @@ class _ProductPageState extends State<ProductPage> {
                     }
                   },
                   child: Image.asset(
-                    isWishlisted
+                    wishlistProvider.isWishlisted(widget.product)
                         ? 'assets/icons/btn_wishlist-on.png'
                         : 'assets/icons/btn_wishlist-off.png',
                     width: 46,

@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/models/product_model.dart';
+import 'package:shamo/providers/wishlist_provider.dart';
 
 class WishlistCard extends StatelessWidget {
-  const WishlistCard({
-    super.key,
-    required this.imgUrl,
-    required this.productName,
-    required this.price,
-  });
+  final ProductModel product;
 
-  final String imgUrl;
-  final String productName;
-  final String price;
+  WishlistCard(this.product);
 
   @override
   Widget build(BuildContext context) {
+    WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+
     return Container(
       margin: const EdgeInsets.only(top: 20),
       padding: const EdgeInsets.only(
@@ -31,8 +29,8 @@ class WishlistCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(defaultRadius),
-            child: Image.asset(
-              imgUrl,
+            child: Image.network(
+              product.galleries![0].url!,
               width: 60,
               fit: BoxFit.cover,
             ),
@@ -43,7 +41,7 @@ class WishlistCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  productName,
+                  product.name!,
                   style: primaryTextStyle.copyWith(
                     fontWeight: semibold,
                   ),
@@ -51,13 +49,18 @@ class WishlistCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 2),
-                Text('\$$price', style: priceTextStyle),
+                Text('\$${product.price}', style: priceTextStyle),
               ],
             ),
           ),
-          Image.asset(
-            'assets/icons/btn_wishlist-on.png',
-            width: 34,
+          GestureDetector(
+            onTap: () {
+              wishlistProvider.setProduct(product);
+            },
+            child: Image.asset(
+              'assets/icons/btn_wishlist-on.png',
+              width: 34,
+            ),
           )
         ],
       ),
