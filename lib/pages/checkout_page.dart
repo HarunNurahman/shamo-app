@@ -1,13 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/checkout_card.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/pages/widgets/loading-button_widget.dart';
+import 'package:shamo/providers/auth_provider.dart';
+import 'package:shamo/providers/cart_provider.dart';
+import 'package:shamo/providers/transaction_provider.dart';
 
-class CheckoutPage extends StatelessWidget {
+class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
 
   @override
+  State<CheckoutPage> createState() => _CheckoutPageState();
+}
+
+class _CheckoutPageState extends State<CheckoutPage> {
+  bool isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleCheckout() async {
+      setState(() {
+        isLoading = true;
+      });
+
+      if (await transactionProvider.checkout(
+        authProvider.user.token!,
+        cartProvider.carts,
+        cartProvider.totalPrice(),
+      )) {
+        cartProvider.carts = [];
+        Get.offAllNamed('/checkout-success');
+      }
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     // Header App Bar (Title, Back Button)
     PreferredSizeWidget header() {
       return AppBar(
@@ -49,18 +85,13 @@ class CheckoutPage extends StatelessWidget {
                     fontWeight: medium,
                   ),
                 ),
-                const CheckoutCard(
-                  imgUrl: 'assets/images/img_shoes-7.png',
-                  productName: 'Terrex Urban Low',
-                  productPrice: 143.98,
-                  quantity: 2,
-                ),
-                const CheckoutCard(
-                  imgUrl: 'assets/images/img_shoes-4.png',
-                  productName: 'Court Vision 2.0 Shoes Limited Edition',
-                  productPrice: 57.15,
-                  quantity: 1,
-                ),
+                Column(
+                  children: cartProvider.carts
+                      .map(
+                        (cart) => CheckoutCard(cart),
+                      )
+                      .toList(),
+                )
               ],
             ),
           ),
@@ -176,7 +207,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '2 Item(s)',
+                      '${cartProvider.totalItem()} Item(s)',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -196,7 +227,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$575.96',
+                      '\$${cartProvider.totalPrice()}',
                       style: primaryTextStyle.copyWith(
                         fontWeight: medium,
                       ),
@@ -241,7 +272,7 @@ class CheckoutPage extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '\$575.92',
+                      '\$${cartProvider.totalPrice()}',
                       style: priceTextStyle.copyWith(
                         fontSize: 14,
                         fontWeight: semibold,
@@ -258,28 +289,31 @@ class CheckoutPage extends StatelessWidget {
           Divider(thickness: 1, color: subtitleTextColor),
 
           // Checkout Button
-          Container(
-            margin: EdgeInsets.symmetric(vertical: defaultMargin),
-            child: ElevatedButton(
-              onPressed: () {
-                Get.offAllNamed('/checkout-success');
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: primaryColor,
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(defaultRadius),
-                ),
-              ),
-              child: Text(
-                'Checkout Now',
-                style: primaryTextStyle.copyWith(
-                  fontSize: 16,
-                  fontWeight: semibold,
-                ),
-              ),
-            ),
-          )
+          isLoading
+              ? Container(
+                  margin: EdgeInsets.only(bottom: defaultMargin),
+                  child: const LoadingButton(),
+                )
+              : Container(
+                  margin: EdgeInsets.symmetric(vertical: defaultMargin),
+                  child: ElevatedButton(
+                    onPressed: handleCheckout,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: primaryColor,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(defaultRadius),
+                      ),
+                    ),
+                    child: Text(
+                      'Checkout Now',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
+                    ),
+                  ),
+                )
         ],
       );
     }
