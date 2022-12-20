@@ -51,7 +51,7 @@ class CheckoutSuccessPage extends StatelessWidget {
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
-                  Get.offAllNamed('/dashboardf');
+                  Get.offAllNamed('/dashboard');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,
