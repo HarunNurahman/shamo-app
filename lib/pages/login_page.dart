@@ -41,10 +41,7 @@ class _LoginPageState extends State<LoginPage> {
         email: emailController.text,
         password: passwordController.text,
       )) {
-        // Session
-        // final SharedPreferences sharedPreferences =
-        //     await SharedPreferences.getInstance();
-        // sharedPreferences.setString('token', emailController.text);
+
 
         Get.offAllNamed('/dashboard');
       } else {
@@ -267,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
                 TextSpan(
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => Get.toNamed('/register'),
-                  text: ' Sign Up',
+                  text: 'Sign Up',
                   style: subtitleTextStyle.copyWith(
                     fontSize: 12,
                     color: primaryColor,
@@ -282,7 +279,6 @@ class _LoginPageState extends State<LoginPage> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: bgColor1,
       body: SafeArea(
         child: Container(

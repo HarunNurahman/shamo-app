@@ -14,6 +14,8 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
+  TextEditingController messageController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // Header Widget (Back Button, Customer Service Profile)
@@ -146,6 +148,8 @@ class _DetailChatPageState extends State<DetailChatPage> {
                       horizontal: 16,
                     ),
                     child: TextFormField(
+                      controller: messageController,
+                      style: primaryTextStyle,
                       decoration: InputDecoration.collapsed(
                         hintText: 'Type Message...',
                         hintStyle: subtitleTextStyle.copyWith(fontSize: 14),
@@ -177,27 +181,34 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
     //
     Widget chatContent() {
-      return ListView(
-        padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-        children: const [
-          ChatBubble(
-            isSender: true,
-            text: 'Hi, this item still available?',
-            hasProduct: true,
-          ),
-          ChatBubble(
-            isSender: false,
-            text: 'Good evening, This item only available in size 42 and 43',
-          ),
-        ],
+      return Expanded(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+          children: const [
+            ChatBubble(
+              isSender: true,
+              text: 'Hi, this item still available?',
+              hasProduct: true,
+            ),
+            ChatBubble(
+              isSender: false,
+              text: 'Good evening, This item only available in size 42 and 43',
+            ),
+          ],
+        ),
       );
     }
 
     return Scaffold(
       backgroundColor: bgColor3,
       appBar: header(),
-      body: chatContent(),
-      bottomNavigationBar: chatInput(),
+      body: Column(
+        children: [
+          chatContent(),
+          chatInput(),
+        ],
+      ),
+      // bottomNavigationBar: chatInput(),
     );
   }
 }
