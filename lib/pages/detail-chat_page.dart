@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shamo/models/product_model.dart';
 import 'package:shamo/pages/widgets/chat-bubble_widget.dart';
 import 'package:shamo/config/themes.dart';
 
-class DetailChatPage extends StatelessWidget {
-  const DetailChatPage({super.key});
+class DetailChatPage extends StatefulWidget {
+  ProductModel product;
 
+  DetailChatPage(this.product);
+
+  @override
+  State<DetailChatPage> createState() => _DetailChatPageState();
+}
+
+class _DetailChatPageState extends State<DetailChatPage> {
   @override
   Widget build(BuildContext context) {
     // Header Widget (Back Button, Customer Service Profile)
@@ -54,7 +62,7 @@ class DetailChatPage extends StatelessWidget {
       );
     }
 
-    //
+    // Product preview
     Widget productPreview() {
       return Container(
         width: 225,
@@ -72,8 +80,8 @@ class DetailChatPage extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(defaultRadius),
-              child: Image.asset(
-                'assets/images/img_shoes-4.png',
+              child: Image.network(
+                widget.product.galleries![0].url!,
                 width: 45,
                 fit: BoxFit.cover,
               ),
@@ -85,14 +93,14 @@ class DetailChatPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Court Vision 2.0 Shoes'.toUpperCase(),
+                    widget.product.name!.toUpperCase(),
                     style: primaryTextStyle,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                   ),
                   const SizedBox(height: 2),
                   Text(
-                    '\$57.15',
+                    '\$${widget.product.price}',
                     style: priceTextStyle.copyWith(
                       fontWeight: medium,
                     ),
@@ -100,7 +108,14 @@ class DetailChatPage extends StatelessWidget {
                 ],
               ),
             ),
-            Image.asset('assets/icons/ic_close.png', width: 22)
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  widget.product = UninitializedProductModel();
+                });
+              },
+              child: Image.asset('assets/icons/ic_close.png', width: 22),
+            )
           ],
         ),
       );
@@ -114,7 +129,9 @@ class DetailChatPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            productPreview(),
+            widget.product is UninitializedProductModel
+                ? const SizedBox()
+                : productPreview(),
             Row(
               children: [
                 Expanded(

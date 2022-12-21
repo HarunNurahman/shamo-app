@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/models/product_model.dart';
+import 'package:shamo/pages/detail-chat_page.dart';
 import 'package:shamo/providers/cart_provider.dart';
 import 'package:shamo/providers/wishlist_provider.dart';
 
@@ -385,7 +386,9 @@ class _ProductPageState extends State<ProductPage> {
                     width: 54,
                     height: 54,
                     child: ElevatedButton(
-                      onPressed: () => Get.toNamed('/message'),
+                      onPressed: () => Get.to(
+                        () => DetailChatPage(widget.product),
+                      ),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: bgColor1,
                         shape: RoundedRectangleBorder(

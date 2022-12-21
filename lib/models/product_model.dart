@@ -50,3 +50,7 @@ class ProductModel {
         "galleries": List<dynamic>.from(galleries!.map((x) => x.toJson())),
       };
 }
+
+// Fungsi ketika tombol chat di product page tidak ditekan
+// Fungsi menghapus produk dari halaman chat
+class UninitializedProductModel extends ProductModel {}

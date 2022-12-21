@@ -20,8 +20,6 @@ class PageRoutes {
     GetPage(name: '/register', page: () => const RegisterPage()),
     // Dashboard Page Route
     GetPage(name: '/dashboard', page: () => DashboardPage()),
-    // Detail Chat Page Route
-    GetPage(name: '/message', page: () => const DetailChatPage()),
     // Edit Profile Page Route
     GetPage(name: '/edit-profile', page: () => const EditProfilePage()),
     // Cart Page Route
