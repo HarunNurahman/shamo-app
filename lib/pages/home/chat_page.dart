@@ -94,7 +94,8 @@ class ChatPage extends StatelessWidget {
     Widget listChat() {
       return StreamBuilder<List<MessageModel>>(
           stream:
-              MessageService().getMessageByUserId(userId: authProvider.user.id),
+              MessageService()
+              .getMessageByUserId(userId: authProvider.user.id!),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.isEmpty) {
