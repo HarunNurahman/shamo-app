@@ -32,8 +32,8 @@ class MessageModel {
     product = json['product'] == {}
         ? UninitializedProductModel()
         : ProductModel.fromJson(json['product']);
-    createdAt = DateTime.parse(json['createdAt']);
-    updatedAt = DateTime.parse(json['updatedAt']);
+    createdAt = DateTime.parse(json['created_at']);
+    updatedAt = DateTime.parse(json['updated_at']);
   }
 
   Map<String, dynamic> toJson() {
@@ -44,8 +44,8 @@ class MessageModel {
       'userImg': userImg,
       'isFromUser': isFromUser,
       'product': product is UninitializedProductModel ? {} : product!.toJson(),
-      'createdAt': createdAt.toString(),
-      'updatedAt': updatedAt.toString(),
+      'created_at': createdAt.toString(),
+      'updated_at': updatedAt.toString(),
     };
   }
 }

@@ -8,6 +8,7 @@ import 'package:shamo/firebase_options.dart';
 import 'package:shamo/providers/auth_provider.dart';
 import 'package:shamo/config/route.dart';
 import 'package:shamo/providers/cart_provider.dart';
+import 'package:shamo/providers/page_provider.dart';
 import 'package:shamo/providers/product_provider.dart';
 import 'package:shamo/providers/transaction_provider.dart';
 import 'package:shamo/providers/wishlist_provider.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => WishlistProvider()),
         ChangeNotifierProvider(create: (context) => CartProvider()),
         ChangeNotifierProvider(create: (context) => TransactionProvider()),
+        ChangeNotifierProvider(create: (context) => PageProvider()),
       ],
       child: GetMaterialApp(
         // useInheritedMediaQuery: true,

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/wishlist_card.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/page_provider.dart';
 import 'package:shamo/providers/wishlist_provider.dart';
 
 class WishlistPage extends StatelessWidget {
@@ -11,6 +12,7 @@ class WishlistPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     WishlistProvider wishlistProvider = Provider.of<WishlistProvider>(context);
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
 
     // Header Widget / App Bar
     Widget header() {
@@ -57,7 +59,7 @@ class WishlistPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Get.toNamed('/dashboard');
+                  pageProvider.currentIndex = 0;
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: primaryColor,

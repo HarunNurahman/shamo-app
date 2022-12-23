@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:shamo/pages/widgets/cart_card.dart';
 import 'package:shamo/config/themes.dart';
 import 'package:shamo/providers/cart_provider.dart';
+import 'package:shamo/providers/page_provider.dart';
 
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
@@ -61,7 +62,7 @@ class CartPage extends StatelessWidget {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  Get.offAllNamed('/dashboard');
+                  Get.toNamed('/dashboard');
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: primaryColor,

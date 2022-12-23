@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/models/product_model.dart';
 
 class ChatBubble extends StatelessWidget {
   const ChatBubble({
     super.key,
     this.text = '',
     this.isSender = false,
-    this.hasProduct = false,
+    this.product,
   });
 
   final String text;
   final bool isSender;
-  final bool hasProduct;
+  final ProductModel? product;
 
   @override
   Widget build(BuildContext context) {
@@ -35,8 +36,8 @@ class ChatBubble extends StatelessWidget {
               children: [
                 ClipRRect(
                   borderRadius: BorderRadius.circular(defaultRadius),
-                  child: Image.asset(
-                    'assets/images/img_shoes-4.png',
+                  child: Image.network(
+                    product!.galleries![0].url!,
                     width: 70,
                   ),
                 ),
@@ -46,13 +47,13 @@ class ChatBubble extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Court Vision 2.0 Shoes'.toUpperCase(),
+                        product!.name!.toUpperCase(),
                         style: primaryTextStyle,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
                       Text(
-                        '\$57.15',
+                        '\$${product!.price}',
                         style: priceTextStyle.copyWith(
                           fontWeight: medium,
                         ),
@@ -110,7 +111,9 @@ class ChatBubble extends StatelessWidget {
         crossAxisAlignment:
             isSender ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          hasProduct ? productPreview() : const SizedBox(),
+          product is UninitializedProductModel
+              ? const SizedBox()
+              : productPreview(),
           Row(
             mainAxisAlignment:
                 isSender ? MainAxisAlignment.end : MainAxisAlignment.start,

@@ -1,10 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:shamo/models/message_model.dart';
 import 'package:shamo/models/product_model.dart';
 import 'package:shamo/models/user_model.dart';
 
 class MessageService {
   // Koneksi ke FirebaseFirestore
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  // Fungsi untuk menampilkan message yang sudah dikirim
+  Stream<List<MessageModel>> getMessageByUserId({int? userId}) {
+    try {
+      return firestore
+          .collection('messages')
+          .where('userId', isEqualTo: userId)
+          .snapshots()
+          .map((QuerySnapshot list) {
+        var result = list.docs.map<MessageModel>((DocumentSnapshot message) {
+          print(message.data());
+          return MessageModel.fromJson(message.data() as Map<String, dynamic>);
+        }).toList();
+        result.sort(
+          (MessageModel a, MessageModel b) =>
+              a.createdAt!.compareTo(b.createdAt!),
+        );
+
+        return result;
+      });
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 
   // Function untuk menambahkan dan menyimpan message ke collection di firebase
   Future<void> addMessage({
@@ -18,7 +43,7 @@ class MessageService {
         'userId': user!.id,
         'username': user.name,
         'userImg': user.profilePhotoUrl,
-        'isFromUser': true,
+        'isFromUser': isFromUser,
         'message': message,
         // Mengecek apakah productnya masuk ke chat atau tidak
         'product':

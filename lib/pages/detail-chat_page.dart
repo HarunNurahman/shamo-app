@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:shamo/models/message_model.dart';
 import 'package:shamo/models/product_model.dart';
 import 'package:shamo/pages/widgets/chat-bubble_widget.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/auth_provider.dart';
+import 'package:shamo/services/message_service.dart';
 
 class DetailChatPage extends StatefulWidget {
   ProductModel product;
@@ -18,6 +22,22 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleMessage() async {
+      await MessageService().addMessage(
+        user: authProvider.user,
+        isFromUser: true,
+        product: widget.product,
+        message: messageController.text,
+      );
+
+      setState(() {
+        widget.product = UninitializedProductModel();
+        messageController.text = '';
+      });
+    }
+
     // Header Widget (Back Button, Customer Service Profile)
     PreferredSize header() {
       return PreferredSize(
@@ -162,7 +182,7 @@ class _DetailChatPageState extends State<DetailChatPage> {
                   width: 45,
                   height: 45,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: handleMessage,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: primaryColor,
                       shape: RoundedRectangleBorder(
@@ -181,21 +201,31 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
     //
     Widget chatContent() {
-      return Expanded(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: defaultMargin),
-          children: const [
-            ChatBubble(
-              isSender: true,
-              text: 'Hi, this item still available?',
-              hasProduct: true,
-            ),
-            ChatBubble(
-              isSender: false,
-              text: 'Good evening, This item only available in size 42 and 43',
-            ),
-          ],
-        ),
+      return StreamBuilder<List<MessageModel>>(
+        stream:
+            MessageService().getMessageByUserId(userId: authProvider.user.id),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+                children: snapshot.data!
+                    .map((MessageModel message) => ChatBubble(
+                          isSender: message.isFromUser!,
+                          text: message.message!,
+                          product: message.product!,
+                        ))
+                    .toList(),
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(
+                color: primaryColor,
+              ),
+            );
+          }
+        },
       );
     }
 

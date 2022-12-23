@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shamo/pages/home/chat_page.dart';
 import 'package:shamo/pages/home/home_page.dart';
 import 'package:shamo/pages/home/profile_page.dart';
 import 'package:shamo/pages/home/wishlist_page.dart';
 import 'package:shamo/config/themes.dart';
+import 'package:shamo/providers/page_provider.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({super.key});
@@ -16,9 +18,10 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-
   @override
   Widget build(BuildContext context) {
+    PageProvider pageProvider = Provider.of<PageProvider>(context);
+
     // Middle Float Button for Cart Widget
     Widget cartButton() {
       return FloatingActionButton(
@@ -53,9 +56,7 @@ class _DashboardPageState extends State<DashboardPage> {
             child: BottomNavigationBar(
               currentIndex: widget.currentIndex,
               onTap: (value) {
-                setState(() {
-                  widget.currentIndex = value;
-                });
+                pageProvider.currentIndex = value;
               },
               backgroundColor: bgColor4,
               type: BottomNavigationBarType.fixed,
@@ -67,7 +68,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Image.asset(
                       'assets/icons/ic_home.png',
                       width: 20,
-                      color: widget.currentIndex == 0
+                      color: pageProvider.currentIndex == 0
                           ? primaryColor
                           : const Color(0xFF808191),
                     ),
@@ -84,7 +85,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Image.asset(
                       'assets/icons/ic_chat.png',
                       width: 20,
-                      color: widget.currentIndex == 1
+                      color: pageProvider.currentIndex == 1
                           ? primaryColor
                           : Color(0xFF808191),
                     ),
@@ -102,7 +103,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Image.asset(
                       'assets/icons/ic_wishlist.png',
                       width: 20,
-                      color: widget.currentIndex == 2
+                      color: pageProvider.currentIndex == 2
                           ? primaryColor
                           : const Color(0xFF808191),
                     ),
@@ -116,7 +117,7 @@ class _DashboardPageState extends State<DashboardPage> {
                     child: Image.asset(
                       'assets/icons/ic_profile.png',
                       width: 18,
-                      color: widget.currentIndex == 3
+                      color: pageProvider.currentIndex == 3
                           ? primaryColor
                           : const Color(0xFF808191),
                     ),
@@ -132,7 +133,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
     // State for Bottom Navigation Bar
     Widget body() {
-      switch (widget.currentIndex) {
+      switch (pageProvider.currentIndex) {
         case 0:
           return const HomePage();
         case 1:
@@ -147,7 +148,7 @@ class _DashboardPageState extends State<DashboardPage> {
     }
 
     return Scaffold(
-      backgroundColor: widget.currentIndex == 0 ? bgColor1 : bgColor3,
+      backgroundColor: pageProvider.currentIndex == 0 ? bgColor1 : bgColor3,
       floatingActionButton: cartButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: customBottomNav(),

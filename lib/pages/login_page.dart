@@ -258,7 +258,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: RichText(
             text: TextSpan(
-              text: 'Don\'t have an account?',
+              text: 'Don\'t have an account? ',
               style: subtitleTextStyle.copyWith(fontSize: 12),
               children: [
                 TextSpan(
