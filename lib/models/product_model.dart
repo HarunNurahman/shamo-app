@@ -44,8 +44,8 @@ class ProductModel {
         "price": price,
         "description": description,
         "tags": tags,
-        "created_at": createdAt!.toIso8601String(),
-        "updated_at": updatedAt!.toIso8601String(),
+        "created_at": createdAt.toString(),
+        "updated_at": updatedAt.toString(),
         "category": category!.toJson(),
         "galleries": List<dynamic>.from(galleries!.map((x) => x.toJson())),
       };

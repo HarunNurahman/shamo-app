@@ -32,20 +32,19 @@ class MessageModel {
     product = json['product'] == {}
         ? UninitializedProductModel()
         : ProductModel.fromJson(json['product']);
-    createdAt = DateTime.parse(json['created_at']);
-    updatedAt = DateTime.parse(json['updated_at']);
+    createdAt = DateTime.parse(json['createdAt']);
+    updatedAt = DateTime.parse(json['updatedAt']);
   }
 
-  Map<String, dynamic> toJson() {
-    return {
-      'message': message,
-      'userId': userId,
-      'username': username,
-      'userImg': userImg,
-      'isFromUser': isFromUser,
-      'product': product is UninitializedProductModel ? {} : product!.toJson(),
-      'created_at': createdAt.toString(),
-      'updated_at': updatedAt.toString(),
-    };
-  }
+  Map<String, dynamic> toJson() => {
+        'message': message,
+        'userId': userId,
+        'username': username,
+        'userImg': userImg,
+        'isFromUser': isFromUser,
+        'product':
+            product is UninitializedProductModel ? {} : product!.toJson(),
+        'createdAt': createdAt.toString(),
+        'updatedAt': updatedAt.toString(),
+      };
 }

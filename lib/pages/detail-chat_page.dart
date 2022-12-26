@@ -18,7 +18,7 @@ class DetailChatPage extends StatefulWidget {
 }
 
 class _DetailChatPageState extends State<DetailChatPage> {
-  TextEditingController messageController = TextEditingController();
+  TextEditingController messageController = TextEditingController(text: '');
 
   @override
   Widget build(BuildContext context) {
@@ -201,13 +201,13 @@ class _DetailChatPageState extends State<DetailChatPage> {
 
     //
     Widget chatContent() {
-      return StreamBuilder<List<MessageModel>>(
-        stream:
-            MessageService().getMessageByUserId(userId: authProvider.user.id!),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Expanded(
-              child: ListView(
+      return Expanded(
+        child: StreamBuilder<List<MessageModel>?>(
+          stream: MessageService()
+              .getMessageByUserId(userId: authProvider.user.id!),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView(
                 padding: EdgeInsets.symmetric(horizontal: defaultMargin),
                 children: snapshot.data!
                     .map((MessageModel message) => ChatBubble(
@@ -216,16 +216,16 @@ class _DetailChatPageState extends State<DetailChatPage> {
                           product: message.product!,
                         ))
                     .toList(),
-              ),
-            );
-          } else {
-            return Center(
-              child: CircularProgressIndicator(
-                color: primaryColor,
-              ),
-            );
-          }
-        },
+              );
+            } else {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: primaryColor,
+                ),
+              );
+            }
+          },
+        ),
       );
     }
 

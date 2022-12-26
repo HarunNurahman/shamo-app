@@ -101,7 +101,6 @@ class ChatPage extends StatelessWidget {
               if (snapshot.data!.isEmpty) {
                 return emptyChat();
               }
-
               return Expanded(
                 child: Container(
                   color: bgColor3,
