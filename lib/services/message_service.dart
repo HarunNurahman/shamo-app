@@ -8,7 +8,7 @@ class MessageService {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
   // Fungsi untuk menampilkan message yang sudah dikirim
-  Stream<List<MessageModel>> getMessageByUserId({int? userId}) {
+  Stream<List<MessageModel>?> getMessageByUserId({int? userId}) {
     try {
       return firestore
           .collection('messages')

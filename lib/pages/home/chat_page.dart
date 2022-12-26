@@ -92,7 +92,7 @@ class ChatPage extends StatelessWidget {
 
     // Chat List
     Widget listChat() {
-      return StreamBuilder<List<MessageModel>>(
+      return StreamBuilder<List<MessageModel>?>(
           stream:
               MessageService()
               .getMessageByUserId(userId: authProvider.user.id!),
